@@ -1,0 +1,725 @@
+.login .login-bg-wrap {
+    padding: 8vh 0 8vh 16vw;
+    min-height: 100vh;
+}
+
+.login .loginbg {
+    padding: 40px 50px;
+    min-height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.login .loginbg:before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: rgba(2, 2, 3, 0.6);
+    left: 0;
+    top: 0;
+    position: absolute;
+    z-index: 0;
+}
+
+.login:before {
+    position: absolute;
+    z-index: 0;
+    background-color: #0079c2;
+    content: "";
+    min-height: 100%;
+    width: 35vw;
+    top: 0;
+    left: 0;
+}
+
+.login .login-header {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.login .login-header .login-logo {
+    display: block;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40vw;
+}
+
+.login .login-header h1 {
+    color: #fff;
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.login .login-header p {
+    color: #fff;
+}
+
+
+.login .login-bg-color {
+    background-color: #ffffff;
+    min-height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding: 45px;
+}
+
+.login .login-content {
+    padding: 30px;
+    max-width: 460px;
+    width: 100%;
+}
+
+
+
+.login .loginBox {
+    margin-top: 30px;
+}
+
+.login .loginBox h2 {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.heading h2 {
+    z-index: 1;
+    position: relative;
+    text-transform: capitalize;
+}
+
+.heading h2:after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100px;
+    height: 8px;
+    background: #0079c26e;
+    z-index: -1;
+}
+
+.login .loginBox p {
+    margin-bottom: 30px;
+    font-size: 17px;
+    color: #646464;
+        font-weight: 400;
+}
+
+.login .loginBox .form-group {
+    position: relative;
+    z-index: 1;
+}
+
+.form-group label.input-label {
+    font-weight: 500;
+}
+
+.login .loginBox .form-control {
+    min-height: 40px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 0;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 10px 30px 10px 32px;
+    color: #111;
+}
+
+.login .loginBox .form-group svg {
+    position: absolute;
+    bottom: 13px;
+    fill: #0079c2;
+}
+
+.login .loginBox .form-group .field-icon {
+    position: absolute;
+    z-index: 1;
+    right: 24px;
+    bottom: 15px;
+    padding: 0 5px;
+    color: #c5c5c5;
+    font-size: 14px;
+}
+
+.login .login-checkbox-area {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.login .checkbox {
+    padding-left: 5px;
+    margin-right: 30px;
+    margin-bottom: 5px;
+}
+
+.login .checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.login input[type=checkbox], .login input[type=radio] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.login .checkbox label {
+    padding-left: 20px;
+    color: #a4a4a4;
+    margin-bottom: 0;
+    font-size: 15px;
+    position: relative;
+}
+
+.login .checkbox label:before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 4px;
+    left: 0;
+    margin-left: -5px;
+    border: 1px solid;
+    border-color: #dcdcdc;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.login .switcher-text {
+    color: #0079c2;
+    font-size: 15px;
+    margin-bottom: 5px;
+    display: block;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.login .login-btn-fill {
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 500;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    border: 0;
+    color: #fff;
+    border-radius: 3px;
+    background-color: #0079c2;
+    padding: 10px 36px;
+    margin-bottom: 10px;
+    width: 100%;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.login .checkbox input[type="checkbox"]:checked + label::after {
+    font-family: 'Font Awesome 5 Free';
+    content: "\f00c";
+    font-weight: 900;
+    color: #000;
+    left: 15px;
+    top: 4px;
+}
+
+.login .checkbox label:after {
+    position: absolute;
+    margin-left: -20px;
+    padding-left: 3px;
+    font-size: 10px;
+    color: #555555;
+}
+
+.login-socials
+{
+  position: absolute;
+  bottom: 0px
+}
+
+.foota p
+{
+   color: #646464;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.foota p a:hover{
+    color: #000;
+}
+
+.login .login-btn-fill:hover {
+    background-color: #0EADFB;
+    border-color: #0EADFB;
+}
+
+.login .switcher-text:hover {
+    color: #000000;
+}
+
+.iconFont
+{
+    font-size: 30px;
+    color: #429CD2;
+    position: relative;
+    top: -11px;
+}
+
+.dropDown .dropdown-toggle
+{
+    display: flex;
+    align-items: center;
+}
+
+.dropDown .username
+{
+    text-align: left;
+}
+
+.dropDown .username h2
+{
+  font-size: 13px;
+  text-align: left;
+  margin: 0 0 2px;
+  line-height: normal
+}
+
+.dropDown .username p{
+    font-size: 11px;
+ text-align: left;
+ margin: 0;
+ line-height: normal
+}
+
+.conBox .card-body
+{
+    padding: 15px;
+}
+
+.conBox .topheader
+{
+    margin-top: 50px
+}
+
+.conBox .search-box form
+{
+    margin-top: 8px;
+}
+
+.conBox .search-box form i
+{
+    position: relative;
+    top: 2px;
+}
+
+.conBox .search-box form input
+{
+    font-size:14px;
+    padding-left: 10px
+}
+
+.conBox .card-body a
+{
+
+    color: #fff;
+}
+
+.conBox .card-body .btn-outline-primary
+{
+    color: #000;
+}
+
+.conBox .card-body .btn-outline-primary:hover
+{
+    color: #fff;
+}
+
+.conBox .card-body a:hover
+{
+    color: #fff;
+}
+
+.conBox .main-content-inner
+{   
+    background: #f6f8fd;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.conBox .card-body.ptb0
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.conBox .nav-tabs .nav-link
+{
+    background-color: #ccc;
+}
+
+.conBox .nav-tabs .nav-link.active
+{
+    background-color: #2B2C3E;
+}
+
+.dataTables_wrapper .row:first-child
+{
+    display: none;
+}
+
+.fc-toolbar .fc-center h2
+{
+       font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.fc-state-active, 
+.fc-state-disabled, 
+.fc-state-down, 
+.fc-state-hover {
+    color: #000;
+    font-weight: 300;
+    background-color: #fff;
+}
+
+.fc-right
+{
+    visibility: hidden;
+}
+
+tr:first-child>td>.fc-day-grid-event {
+    margin-top: 2px;
+    color: #fff;
+    padding: 2px;
+}
+
+.tabdash .nav-tabs {
+    border-bottom: 0;
+}
+
+.tabdash .active.show
+{
+    background-color: #0079C2 !important;
+    border-color: #0079C2;
+    color: #fff;
+    box-shadow: none !important;
+}
+
+.tabdash .nav-item a
+{
+    color: #000;
+}
+
+.contactInfo h2
+{
+    font-size: 22px;
+    margin-bottom: 0;
+}
+
+.contactInfo h3
+{
+    font-size: 14px;
+}
+
+.contactInfo .form-group input
+{
+    border-radius: 5px;
+    height: 40px;
+}
+
+.cbtn
+{
+    padding: 8px 30px;
+}
+
+.switchBox {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.switchBox .switch {
+  position: relative;
+  display: inline-block;
+      width: 50px;
+    height: 25px;
+}
+
+.switchBox .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switchBox .switch input:focus,
+.switchBox .switch input:active
+{
+    box-shadow: none !important;
+}
+
+.switchBox .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  border: 1px solid #ccc;
+  right: 0;
+  bottom: 0;
+  background-color: #fff ;
+  transition: 0.4s;
+}
+
+.switchBox .slider:before {
+    position: absolute;
+    content: "";
+    height: 19px;
+    width: 19px;
+    left: 4px;
+    bottom: 2px;
+    background-color: #ccc;
+    transition: 0.4s;
+}
+
+.switchBox input:checked + .slider {
+  background-color: #0079C2;
+  border-color: #0079C2;
+}
+
+.switchBox input:focus + .slider {
+/*  box-shadow: 0 0 0 4px rgba(21, 156, 228, 0.7);*/
+  outline: none;
+}
+
+.switchBox input:checked + .slider:before {
+  transform: translateX(23px);
+   background-color: #fff;
+}
+
+.switchBox .slider.round {
+  border-radius: 34px;
+}
+
+.switchBox .slider.round:before {
+  border-radius: 50%;
+}
+
+.switchBox span.ac
+{
+       margin-right: 6px;
+    font-size: 15px;
+    color: #233650;
+    font-weight: 500;
+}
+
+.contactInfoBox label
+{
+    font-size: 14px;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(0.2, 0.2, 0.2);
+  }
+}
+@keyframes pulse2 {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(0, 0, 0);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes pulse3 {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(0, 0, 0);
+  }
+  90% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+.main-loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader1 {
+  width: 20px;
+  height: 20px;
+  background-color: #0EADFB;
+  border-radius: 50%;
+  float: left;
+  z-index: 9;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  animation-name: pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  animation-delay: 0s;
+  transition: transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.loader2 {
+  width: 40px;
+  height: 40px;
+  background-color: #0EADFB;
+  border-radius: 50%;
+  float: left;
+  z-index: 8;
+  opacity: 0.7;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  animation-name: pulse2;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-delay: 0.3s;
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.loader3 {
+  width: 60px;
+  height: 60px;
+  background-color: #0EADFB;
+  border-radius: 50%;
+  float: left;
+  z-index: 7;
+  opacity: 0.4;
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation-name: pulse3;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-delay: 0.5s;
+  transform-origin: center;
+  transition: transform 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.preloader {
+  position: fixed;
+  background: #2B2C3E;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+body.loaded{
+     overflow: hidden !important;
+}
+
+.logoH2
+{
+    font-size: 35px;
+    color: #fff;
+    margin-bottom: 0;
+    padding-top: 18px;
+}
+
+.profile_user
+{
+    background: #f7faff;
+    justify-content: center;
+    align-items: flex-start;
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+        padding: 6px;
+}
+
+.profile_user .card img {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+}
+
+.profile_user .card label {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+        padding: 8px 15px;
+    margin-top: 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    background: #0079C2;
+}
+
+.profile_form .form-group
+{
+    margin-bottom: 0;
+}

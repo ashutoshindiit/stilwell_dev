@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'status'
     ];
 
     /**
@@ -41,4 +43,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+         return $this->belongsTo(Role::class);
+    }
+
+    public function thumbnail($avatar)
+    {
+        if($avatar){
+            return  asset("assets/images/user/images/{$avatar}");
+        }else{
+            return asset("assets/images/user/images/placeholder.png");
+        }
+    }
 }
