@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=>'auth'], functi
     Route::post('/sendEmail',[SendEmailController::class,'sendEmail'])->name('sendemail');
     Route::get('fullcalender', [FullCalenderController::class, 'index']);
     Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
+    Route::get('googleEventList', [FullCalenderController::class, 'googleEventList']);
     Route::resource('/contacts', ContactController::class);
     Route::get('/profile', [ProfileController::class,'index'])->name('profile');
     Route::put('/profile', [ProfileController::class,'update'])->name('profile.update');

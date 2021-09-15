@@ -102,203 +102,44 @@
             <!--==================================*
                Notification Section
                *====================================-->
-            <div class="col-md-6 col-sm-12">
-               <ul class="notification-area pull-right">
-                  <li class="mobile_menu_btn">
-                     <span class="nav-btn pull-left d_none_lg">
-                     <button class="open-left waves-effect">
-                     <i class="ion-android-menu"></i>
-                     </button>
-                     </span>
-                  </li>
-                  <!--li class="dropdown d_none_sm">
-                     <div id="languageDropdown">
-                         <span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
-                             <i class="flag-icon flag-icon-us "></i>
-                         </span>
-                         <div class="dropdown-menu navbar-dropdown">
-                             <a class="dropdown-item font-weight-medium">
-                                 <i class="flag-icon flag-icon-it mr-2"></i>
-                                 Italy
-                             </a>
-                             <a class="dropdown-item font-weight-medium">
-                                 <i class="flag-icon flag-icon-de mr-2"></i>
-                                 German
-                             </a>
-                             <a class="dropdown-item font-weight-medium">
-                                 <i class="flag-icon flag-icon-es mr-2"></i>
-                                 Spanish
-                             </a>
-                             <a class="dropdown-item font-weight-medium">
-                                 <i class="flag-icon flag-icon-gb mr-2"></i>
-                                 United Kingdom
-                             </a>
-                             <a class="dropdown-item font-weight-medium">
-                                 <i class="flag-icon flag-icon-tr mr-2"></i>
-                                 Turkish
-                             </a>
-                         </div>
-                     </div>
-                     </li>   
-                     <li id="full-view" class="d_none_sm"><i class="feather ft-maximize"></i></li>
-                     <li id="full-view-exit" class="d_none_sm"><i class="feather ft-minimize"></i></li-->
-                  <!--li class="dropdown">
-                     <i class="feather ft-bell dropdown-toggle" data-toggle="dropdown"><span class="badge bg-danger rounded-pill">7</span></i>
-                     <div class="dropdown-menu bell-notify-box notify-box">
-                         <span class="notify-title">You have 3 new notifications </span>
-                         <div class="nofity-list">
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb"><i class="ti-map-alt bg_blue"></i></div>
-                                 <div class="notify-text">
-                                     <h3>You added your Location</h3>
-                                     <span>Just Now</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb"><i class="ti-bolt-alt bg_warning"></i></div>
-                                 <div class="notify-text">
-                                     <h3>Your Subscription Expired</h3>
-                                     <span>30 Seconds ago</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb"><i class="ti-heart bg_danger"></i></div>
-                                 <div class="notify-text">
-                                     <h3>Some special like you</h3>
-                                     <span>Just Now</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb"><i class="ti-comments bg_info"></i></div>
-                                 <div class="notify-text">
-                                     <h3>New Commetns On Post</h3>
-                                     <span>30 Seconds ago</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb"><i class="ti-settings bg_secondary"></i></div>
-                                 <div class="notify-text">
-                                     <h3>You changed your Settings</h3>
-                                     <span>Just Now</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb"><i class="ti-image bg_success"></i></div>
-                                 <div class="notify-text">
-                                     <h3>Image Uploaded Successfully</h3>
-                                     <span>Just Now</span>
-                                 </div>
-                             </a>
-                         </div>
-                     </div>
-                     </li>
-                     <li class="dropdown">
-                     <i class="feather ft-mail dropdown-toggle" data-toggle="dropdown"><span class="notification_dot"></span></i>
-                     <div class="dropdown-menu notify-box nt-enveloper-box">
-                         <span class="notify-title">You have 3 new Messages</span>
-                         <div class="nofity-list">
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb">
-                                     <img src="{{ asset('assets/images/author/author-img1.jpg')}}" alt="image">
-                                 </div>
-                                 <div class="notify-text">
-                                     <h3>Jhon Doe</h3>
-                                     <span class="msg">Hello are you there?</span>
-                                     <span>3:15 PM</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb">
-                                     <img src="{{ asset('assets/images/author/author-img2.jpg') }}" alt="image">
-                                 </div>
-                                 <div class="notify-text">
-                                     <h3>David Boos</h3>
-                                     <span class="msg">Waiting for your Response...</span>
-                                     <span>3:15 PM</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb">
-                                     <img src="{{ asset('assets/images/user.jpg') }}" alt="image">
-                                 </div>
-                                 <div class="notify-text">
-                                     <h3>Jason Roy</h3>
-                                     <span class="msg">Hi there, Hope you are well</span>
-                                     <span>3:15 PM</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb">
-                                     <img src="{{ asset('assets/images/author/author-img4.jpg') }}" alt="image">
-                                 </div>
-                                 <div class="notify-text">
-                                     <h3>Malika Roy</h3>
-                                     <span class="msg">Your Product Dispatched form Warehouse...</span>
-                                     <span>3:15 PM</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb">
-                                     <img src="{{ asset('assets/images/author/author-img2.jpg') }}" alt="image">
-                                 </div>
-                                 <div class="notify-text">
-                                     <h3>Raven Jhon</h3>
-                                     <span class="msg">Please recieve your parcel from our store</span>
-                                     <span>3:15 PM</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb">
-                                     <img src="{{ asset('assets/images/author/author-img1.jpg') }}" alt="image">
-                                 </div>
-                                 <div class="notify-text">
-                                     <h3>Angela Yo</h3>
-                                     <span class="msg">You recieved a new message...</span>
-                                     <span>3:15 PM</span>
-                                 </div>
-                             </a>
-                             <a href="#" class="notify-item">
-                                 <div class="notify-thumb">
-                                     <img src="{{ asset('assets/images/user.jpg') }}" alt="image">
-                                 </div>
-                                 <div class="notify-text">
-                                     <h3>Rebecca Jhon</h3>
-                                     <span class="msg">Hey I am waiting for you...</span>
-                                     <span>3:15 PM</span>
-                                 </div>
-                             </a>
-                         </div>
-                     </div>
-                     </li-->
-                     @if(Auth::check())
-                    <li class="user-dropdown">
-                     <div class="dropdown dropDown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           <img src="{{ asset('assets/images/user.jpg') }}" alt="" class="img-fluid">
-                           <div class="username">
-                              <h2>{{ Auth::user()->name }}</h2>
-                              <p>{{ Auth::user()->email }}</p>
-                           </div>
-                        </button>
-                        <div class="dropdown-menu dropdown_user" aria-labelledby="dropdownMenuButton" >
-                           <div class="dropdown-header d-flex flex-column align-items-center">
-                              <div class="user_img mb-3">
-                                 <img src="{{ asset('assets/images/user.jpg') }}" alt="User Image">
-                              </div>
-                              <div class="user_bio text-center">
-                                 <p class="name font-weight-bold mb-0">{{ Auth::user()->name }}</p>
-                                 <p class="email text-muted mb-3"><a class="pl-3 pr-3">{{ Auth::user()->email }}</a></p>
-                              </div>
-                           </div>
-                           <a class="dropdown-item" href="{{ Route('admin.profile') }}"><i class="ti-user"></i> Profile</a>
-                           <span role="separator" class="divider"></span>
-                           <a class="dropdown-item" href="{{ Route('logout') }}"><i class="ti-power-off"></i>Logout</a>
-                        </div>
-                     </div>
+               <div class="col-md-6 col-sm-12">
+                <ul class="notification-area pull-right">
+                    <li class="mobile_menu_btn">
+                      <span class="nav-btn pull-left d_none_lg">
+                      <button class="open-left waves-effect">
+                      <i class="ion-android-menu"></i>
+                      </button>
+                      </span>
                     </li>
-                    @endif
-               </ul>
-            </div>
+                      @if(Auth::check())
+                     <li class="user-dropdown">
+                      <div class="dropdown dropDown">
+                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ Auth::user()->thumbnail(Auth::user()->avatar) }}" alt="" class="img-fluid">
+                            <div class="username">
+                               <h2>{{ Auth::user()->name }}</h2>
+                               <p>{{ Auth::user()->email }}</p>
+                            </div>
+                         </button>
+                         <div class="dropdown-menu dropdown_user" aria-labelledby="dropdownMenuButton" >
+                            <div class="dropdown-header d-flex flex-column align-items-center">
+                               <div class="user_img mb-3">
+                                  <img src="{{ Auth::user()->thumbnail(Auth::user()->avatar) }}" alt="User Image">
+                               </div>
+                               <div class="user_bio text-center">
+                                  <p class="name font-weight-bold mb-0">{{ Auth::user()->name }}</p>
+                                  <p class="email text-muted mb-3"><a class="pl-3 pr-3">{{ Auth::user()->email }}</a></p>
+                               </div>
+                            </div>
+                            <a class="dropdown-item" href="{{ Route('admin.profile') }}"><i class="ti-user"></i> Profile</a>
+                            <span role="separator" class="divider"></span>
+                            <a class="dropdown-item" href="{{ Route('logout') }}"><i class="ti-power-off"></i>Logout</a>
+                         </div>
+                      </div>
+                     </li>
+                     @endif
+                </ul>
+             </div>
             <!--==================================*
                End Notification Section
                *====================================-->
@@ -319,27 +160,8 @@
           <div class="dash-sidebar dashtogle">
             <div class="toggle closebtn"><i class="feather ft-x"></i></div>  
             <div class="eventsec">
-                <ul class="bullet-line-list">
-                   <li>
-                      <p class="text-muted mb-2">24 Jan 2021</p>
-                      <p class="mb-2">User Logged in Successfully</p>
-                   </li>
-                   <li>
-                      <p class="text-muted mb-2">25 Mar 2021</p>
-                      <p class="mb-2">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
-                   </li>
-                   <li>
-                      <p class="text-muted mb-2">26 June 2021</p>
-                      <p class="mb-2">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit</p>
-                   </li>
-                   <li>
-                      <p class="text-muted mb-2">27 July 2021</p>
-                      <p class="mb-0">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                   </li>
-                   <li>
-                      <p class="text-muted mb-2">21 July 2021</p>
-                      <p class="mb-0">Ut enim ad minima veniam, quis nostrum exercitationem ullam</p>
-                   </li>
+                <ul class="bullet-line-list render-ajax-googleEvent">
+
                 </ul>
             </div>
           </div>
@@ -489,7 +311,6 @@
         <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
         <script src="{{ asset('assets/vendors/charts/charts-bundle/Chart.bundle.js') }}"></script>
-        <script src="{{ asset('assets/vendors/charts/float-bundle/jquery.flot.pie.js') }}"></script>
         <script src="{{ asset('assets/vendors/data-table/js/jquery.dataTables.js') }}"></script>
         <script src="{{ asset('assets/vendors/data-table/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/vendors/data-table/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -521,30 +342,31 @@
         </script>
         <script>
         $(document).ready(function(){
-          $('.toggle').click(function(){
-            $('.dashtogle').toggleClass('active')
-            $('.toggle').toggleClass('active')
-          })
+
+            $('.toggle').click(function(){
+                $('.dashtogle').toggleClass('active')
+                $('.toggle').toggleClass('active')
+            })
+
+            $('.toggle1').click(function(){
+                $('.dashtogle1').toggleClass('active')
+                $('.toggle1').toggleClass('active')
+            })
+
+            $('.toggle2').click(function(){
+                $('.dashtogle2').toggleClass('active')
+                $('.toggle2').toggleClass('active')
+            })
+
+            $('.toggle3').click(function(){
+                $('.dashtogle3').toggleClass('active')
+                $('.toggle3').toggleClass('active')
+            })
         })
-        $(document).ready(function(){
-          $('.toggle1').click(function(){
-            $('.dashtogle1').toggleClass('active')
-            $('.toggle1').toggleClass('active')
-          })
-        })
-        $(document).ready(function(){
-          $('.toggle2').click(function(){
-            $('.dashtogle2').toggleClass('active')
-            $('.toggle2').toggleClass('active')
-          })
-        })
-        $(document).ready(function(){
-          $('.toggle3').click(function(){
-            $('.dashtogle3').toggleClass('active')
-            $('.toggle3').toggleClass('active')
-          })
-        })
+        
         </script>
+
+        @yield('scripts_extra')
     </body>
 </html>
         

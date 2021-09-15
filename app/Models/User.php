@@ -57,4 +57,5 @@ class User extends Authenticatable
             return asset("assets/images/user/images/placeholder.png");
         }
     }
+
 }

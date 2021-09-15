@@ -28,7 +28,7 @@
          <!-- data table -->
          <div class="col-12">
             <div class="card mt-3">
-               <div class="card-body">
+               <div class="card-body"> 
                   @if ($message = Session::get('success'))
                      <div class="alert alert-success" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -51,7 +51,7 @@
                                  <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td>{{ $role->name }}</td>
-                                    <td>25</td>
+                                    <td>{{ $role->users_count }}</td>
                                     <td>
                                        <ul class="d-flex justify-content-center">
                                           <li class="mr-3"><a href="{{ Route('admin.role.edit', ['id'=>$role->id]) }}" class="text-primary"><i class="fa fa-edit"></i></a></li>

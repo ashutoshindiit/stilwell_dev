@@ -12,6 +12,8 @@ Full Calendar Init
 /*======== Doucument Ready Function =========*/
 jQuery(document).ready(function () {
 
+        render_ajax_event();
+
         var updtaeEvent = null;
         $.ajaxSetup({
             headers: {
@@ -37,7 +39,6 @@ jQuery(document).ready(function () {
             events: APP_URL + "/admin/fullcalender",
 
             eventRender: function (event, element, view) {
-                console.log(event);
                 element
                 .find(".fc-content")
                 .prepend("<span class='closeBtn material-icons'>&times;</span>");
@@ -55,6 +56,7 @@ jQuery(document).ready(function () {
                             success: function (response) {
                                 calendar.fullCalendar('removeEvents', event.id);
                                 displayMessage("Event Deleted Successfully");
+                            
                             }
                         });
                     }
@@ -72,6 +74,7 @@ jQuery(document).ready(function () {
                 $('#add_event_end').val(end);
                 $('#add-event-modal').modal('show');
             },
+            editable: true,
             eventDrop: function (event, delta) {
                 var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
                 var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
@@ -88,6 +91,7 @@ jQuery(document).ready(function () {
                     type: "POST",
                     success: function (response) {
                         displayMessage("Event Updated Successfully");
+                    
                     }
                 });
             },
@@ -107,7 +111,6 @@ jQuery(document).ready(function () {
 
         $('#update-event').on('click', function(e) {
             $('#update-event').prop('disabled',true);
-            console.log("epdate clicked");
             e.preventDefault();
             var title = $('#update_event_title').val();
             var start = $('#update_event_start').val();
@@ -132,10 +135,15 @@ jQuery(document).ready(function () {
                         event.end = data.end;
                         $('#calendar').fullCalendar('updateEvent',event);
                         $('#calendar').fullCalendar('unselect');
+                    
                     }
                 });
             }
             $('#update-event-modal').modal('hide');
+        });
+
+        $('.ft-clock').on('click', function() {
+            render_ajax_event();
         });
 
         $('#save-event').on('click', function() {
@@ -163,6 +171,7 @@ jQuery(document).ready(function () {
                             },true);
 
                         $('#calendar').fullCalendar('unselect');
+                        render_ajax_event();
                     }
                 });
             }
@@ -176,4 +185,15 @@ function displayMessage(message) {
     toastr.options.timeOut = 2000;
     toastr.success(message, 'Event');
 } 
+
+function render_ajax_event()
+{
+    $.ajax({
+        url: APP_URL + "/admin/googleEventList",
+        type: "get",
+        success: function (data) {
+           $('.render-ajax-googleEvent').html(data);
+        }
+    });
+}
 /*======== End Doucument Ready Function =========*/

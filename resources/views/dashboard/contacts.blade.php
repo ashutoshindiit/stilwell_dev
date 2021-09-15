@@ -6,6 +6,7 @@
    Main Content Section
    *====================================-->
 <div class="main-content page-content conBox">
+
    <div class="topheader">
       <div class="card">
          <div class="card-body">
@@ -25,38 +26,21 @@
       Main Section
       *====================================-->
    <div class="main-content-inner">
-      <div class="row mb-3">
-         <!-- data table -->
-         <div class="col-md-12 grid-margin tabdash ">
-            <!--ul class="nav nav-tabs" id="myTab" role="tablist">
-               <li class="nav-item mr-2">
-                  <a class="active show btn bg-white" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Contacts</a>
-               </li>
-               <li class="nav-item">
-                  <a class="btn bg-white" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Contact Info</a>
-               </li>
-            </ul-->
-            <!--  <div class="d-flex justify-content-between flex-wrap tabdash">
-               <div class="d-flex">
-                  <button class="btn bg-primary mr-3"> <i class="feather ft-phone"></i> Contacts</button>
-                  <button class="btn bg-white "><i class="feather ft-user"></i> Contact Info</button>
-               </div>
-               </div> -->
-         </div>
-
-      </div>
       <div class="row">
          <!-- data table -->
          <div class="col-12">
             <div class="card">
                <div class="card-body ">
+                  @php 
+                     flashMessageGet();
+                  @endphp
                   <div class="tab-content" id="myTabContent">
                      <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row align-items-center">
                            <div class="col-3">
                               <div class="form-group">
                                  <select class="form-control statusFrom">
-                                    <option>Contact Type</option>
+                                    <option value="">Contact Type</option>
                                     <option>Large select</option>
                                     <option>Small select</option>
                                  </select>
@@ -94,146 +78,42 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                 <tr>
-                                    <td>James</td>
-                                    <td>Andrew</td>
-                                    <td>Company One</td>
-                                    <td>Newyork</td>
-                                    <td>9874654120</td>
-                                    <td><span class="label label-primary">2021/06/21</span></td>
-                                    <td><span class="label label-primary">2021/06/16</span></td>
-                                    <td>
-                                       <select class="form-control statusFrom">
-                                          <option>Select Status</option>
-                                          <option>Preliminary</option>
-                                          <option>Design Offered</option>
-                                          <option>Design</option>
-                                          <option>Estimating</option>
-                                          <option>Pending</option>
-                                          <option>Active Project</option>
-                                          <option>Warranty</option>
-                                       </select>
-                                    </td>
-                                    <td>
-                                       <ul class="d-flex justify-content-center">
-                                           <li class="mr-3"><a href="#" data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="text-info"><i class="fa fa-eye"></i></a></li>
-                                           <li class="mr-3"><a href="#" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                           <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                       </ul>
-                                   </td>
-                                 </tr>
-                                 <tr>
-                                    <td>Philip</td>
-                                    <td>Jones</td>
-                                    <td>Company Two</td>
-                                    <td>Washington DC</td>
-                                    <td>9874654120</td>
-                                    <td><span class="label label-primary">2021/06/18</span></td>
-                                    <td><span class="label label-primary">2021/06/11</span></td>
-                                    <td>
-                                       <select class="form-control statusFrom">
-                                          <option>Select Status</option>
-                                          <option>Preliminary</option>
-                                          <option>Design Offered</option>
-                                          <option>Design</option>
-                                          <option>Estimating</option>
-                                          <option>Pending</option>
-                                          <option>Active Project</option>
-                                          <option>Warranty</option>
-                                       </select>
-                                    </td>
-                                    <td>
-                                       <ul class="d-flex justify-content-center">
-                                           <li class="mr-3"><a href="#" class="text-info"><i class="fa fa-eye"></i></a></li>
-                                           <li class="mr-3"><a href="#" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                           <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                       </ul>
-                                   </td>
-                                 </tr>
-                                 <tr>
-                                    <td>Charles</td>
-                                    <td>Johnson</td>
-                                    <td>Company Three</td>
-                                    <td>California</td>
-                                    <td>9874654120</td>
-                                    <td><span class="label label-primary">2021/06/15</span></td>
-                                    <td><span class="label label-primary">2021/06/10</span></td>
-                                    <td>
-                                       <select class="form-control statusFrom">
-                                          <option>Select Status</option>
-                                          <option>Preliminary</option>
-                                          <option>Design Offered</option>
-                                          <option>Design</option>
-                                          <option>Estimating</option>
-                                          <option>Pending</option>
-                                          <option>Active Project</option>
-                                          <option>Warranty</option>
-                                       </select>
-                                    </td>
-                                    <td>
-                                       <ul class="d-flex justify-content-center">
-                                           <li class="mr-3"><a href="#" class="text-info"><i class="fa fa-eye"></i></a></li>
-                                           <li class="mr-3"><a href="#" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                           <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                       </ul>
-                                   </td>
-                                 </tr>
-                                 <tr>
-                                    <td>Smith</td>
-                                    <td>John</td>
-                                    <td>Company Four</td>
-                                    <td>Vancouver</td>
-                                    <td>9874654120</td>
-                                    <td><span class="label label-primary">2021/06/12</span></td>
-                                    <td><span class="label label-primary">2021/06/06</span></td>
-                                    <td>
-                                       <select class="form-control statusFrom">
-                                          <option>Select Status</option>
-                                          <option>Preliminary</option>
-                                          <option>Design Offered</option>
-                                          <option>Design</option>
-                                          <option>Estimating</option>
-                                          <option>Pending</option>
-                                          <option>Active Project</option>
-                                          <option>Warranty</option>
-                                       </select>
-                                    </td>
-                                    <td>
-                                       <ul class="d-flex justify-content-center">
-                                           <li class="mr-3"><a href="#" class="text-info"><i class="fa fa-eye"></i></a></li>
-                                           <li class="mr-3"><a href="#" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                           <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                       </ul>
-                                   </td>
-                                 </tr>
-                                 <tr>
-                                    <td>Johnson</td>
-                                    <td>Monica</td>
-                                    <td>Company Five</td>
-                                    <td>British Columbia</td>
-                                    <td>9874654120</td>
-                                    <td><span class="label label-primary">2021/06/12</span></td>
-                                    <td><span class="label label-primary">2021/06/10</span></td>
-                                    <td>
-                                       <select class="form-control statusFrom">
-                                          <option>Select Status</option>
-                                          <option>Preliminary</option>
-                                          <option>Design Offered</option>
-                                          <option>Design</option>
-                                          <option>Estimating</option>
-                                          <option>Pending</option>
-                                          <option>Active Project</option>
-                                          <option>Warranty</option>
-                                       </select>
-                                    </td>
-                                    <td>
-                                       <ul class="d-flex justify-content-center">
-                                           <li class="mr-3"><a href="#" class="text-info"><i class="fa fa-eye"></i></a></li>
-                                           <li class="mr-3"><a href="#" class="text-primary"><i class="fa fa-edit"></i></a></li>
-                                           <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                       </ul>
-                                   </td>
-                                 </tr>
+                                 @if(count($contacts) > 0 )
+                                    @foreach ($contacts as $contact)
+                                       <tr>
+                                          <td>{{ $contact->primary_f_name }}</td>
+                                          <td>{{ $contact->primary_l_name }}</td>
+                                          <td>{{ $contact->company }}</td>
+                                          <td>{{ $contact->address }}</td>
+                                          <td>{{ $contact->primary_phone_1 }}</td>
+                                          <td><span class="label label-primary">{{ date('Y/m/d',strtotime($contact->created_at)) }}</span></td>
+                                          <td><span class="label label-primary">2021/06/16</span></td>
+                                          <td>
+                                             <select class="form-control statusFrom">
+                                                <option>Select Status</option>
+                                                <option>Preliminary</option>
+                                                <option>Design Offered</option>
+                                                <option>Design</option>
+                                                <option>Estimating</option>
+                                                <option>Pending</option>
+                                                <option>Active Project</option>
+                                                <option>Warranty</option>
+                                             </select>
+                                          </td>
+                                          <td>
+                                             <ul class="d-flex justify-content-center">
+                                                <li class="mr-3"><a href="#" data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="text-info"><i class="fa fa-eye"></i></a></li>
+                                                <li class="mr-3"><a href="#" class="text-primary"><i class="fa fa-edit"></i></a></li>
+                                                <form action="{{ Route('admin.contacts.destroy',['contact'=>$contact->id]) }}" id="delete_contact_{{$contact->id}}" method="post">
+                                                   @csrf
+                                                   @method('DELETE')
+                                                </form>                                                
+                                                <li><a href="#"  onclick="archiveFunction('delete_contact_{{$contact->id}}')" class="text-danger"><i class="ti-trash"></i></a></li>
+                                             </ul>
+                                       </td>
+                                       </tr>                                       
+                                    @endforeach
+                                 @endif
                               </tbody>
                            </table>
                         </div>
@@ -247,138 +127,6 @@
          </div>
          <!-- data table -->
       </div>
-      <!-- Widget Bottom -->
-      <!--div class="row accordContainer">
-         <div class="col-lg-6 stretched_card mt-4">
-            <div class="card pd0">
-               <div class="card-body pd0">
-                 <div class="accordion accordion-style-2 accBox">
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#accordion-1">Events For 21st July</a>
-                        </div>
-                        <div id="accordion-1" class="collapse" data-parent="#accordion1">
-                            <div class="card-body">
-                              <ul class="bullet-line-list">
-                                 <li>
-                                    <p class="text-muted mb-2">24 Jan 2021</p>
-                                    <p class="mb-2">User Logged in Successfully</p>
-                                 </li>
-                                 <li>
-                                    <p class="text-muted mb-2">25 Mar 2021</p>
-                                    <p class="mb-2">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
-                                 </li>
-                                 <li>
-                                    <p class="text-muted mb-2">26 June 2021</p>
-                                    <p class="mb-2">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit</p>
-                                 </li>
-                                 <li>
-                                    <p class="text-muted mb-2">27 July 2021</p>
-                                    <p class="mb-0">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                                 </li>
-                                 <li>
-                                    <p class="text-muted mb-2">21 July 2021</p>
-                                    <p class="mb-0">Ut enim ad minima veniam, quis nostrum exercitationem ullam</p>
-                                 </li>
-                              </ul>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-6 stretched_card mt-4">
-            <div class="card pd0">
-               <div class="card-body pd0">
-                 <div class="accordion accordion-style-2 accBox">
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#accordion-4">Calendar</a>
-                        </div>
-                        <div id="accordion-4" class="collapse" data-parent="#accordion4">
-                            <div class="card-body">
-                              <div id="calendar"></div>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-               </div>
-            </div>
-            
-         </div>
-      </div-->
-
-      <!--div class="row accordContainer">
-         <div class="col-lg-6 col-md-12 stretched_card mt-4">
-            <div class="card pd0">
-               <div class="card-body pd0">
-                 <div class="accordion accordion-style-2 accBox">
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#accordion-2">TO DO LIST</a>
-                        </div>
-                        <div id="accordion-2" class="collapse" data-parent="#accordion2">
-                           <div class="card-body">
-                              <div class="todo_container">
-                                 <div class="todo_content mr-4">
-                                    <ul class="d-flex flex-column-reverse todo-list" id="todo_list">
-                                       <li><label><input type="checkbox"><i></i><span>The secrets to success in every stilwell project are clear</span><a href="#" class="ti-trash"></a></label></li>
-                                       <li><label><input type="checkbox"><i></i><span>Complete home remodeling project successfully.</span><a href="#" class="ti-trash"></a></label></li>
-                                       <li><label><input type="checkbox"><i></i><span>We are the designer and the builder, working directly with you.</span><a href="#" class="ti-trash"></a></label></li>
-                                       <li><label><input type="checkbox"><i></i><span>Best In Designing & Remodeling</span><a href="#" class="ti-trash"></a></label></li>
-                                       <li><label><input type="checkbox"><i></i><span>Complete  design Offers given by customers</span><a href="#" class="ti-trash"></a></label></li>
-                                       <li><label><input type="checkbox"><i></i><span>We are company with more and more ongoign projects</span><a href="#" class="ti-trash"></a></label></li>
-                                    </ul>
-                                 </div>
-                                 <div class="list_text">
-                                    <input type="text" class="todo_add_item form-control" placeholder="Write new item and hit 'Enter'...">
-                                    <button type="button" class="btn btn-primary submit_list_btn"><i class="fa fa-plus mr-0"></i></button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                    </div>
-                 </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-6 stretched_card mt-4">
-            <div class="card pd0">
-               <div class="card-body pd0">
-                 <div class="accordion accordion-style-2 accBox">
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#accordion-3">Send Email</a>
-                        </div>
-                        <div id="accordion-3" class="collapse" data-parent="#accordion3">
-                           <div class="card-body">
-                             <div class="sendBox">
-                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="To">
-                                 </div>
-                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Subject">
-                                 </div>
-                                 <div class="form-group">
-                                    <textarea class="form-control" rows="7" placeholder="Message"></textarea>
-                                 </div>
-                                 <div class="form-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                    </div>
-                                 </div>
-                                 <button type="button" class="btn cbtn btn-rounded btn-primary">Send</button>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-               </div>
-            </div>
-         </div>
-      </div-->
    </div>
    <!--==================================*
       End Main Section
@@ -388,207 +136,240 @@
    End Main Content Section
    *===================================-->
   <!-- The Modal -->
-  <div class="modal contact-modal" id="contactModal">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+<div class="modal contact-modal" id="contactModal">
+   <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header p-0">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            <div class="contactInfo">
-               <h2>Add Contact</h2>
-               <div class="switchBox">
-                  <span class="ac">Active</span>
-                  <label class="switch">
-                     <input type="checkbox">
-                     <span class="slider round"></span>
-                  </label>
-               </div>
-               <hr />
-               <div class="form-group w-25">
-                  <select class="form-control statusFrom">
-                     <option>Client</option>
-                     <option>Subcontractor</option>
-                     <option>Personal</option>
-                  </select>
-               </div>
+            <form id="add_contacts" action="" method="post"> 
+               <div class="contactInfo">
+                  <h2>Add Contact</h2>
+                  <div class="switchBox">
+                     <span class="ac">Active</span>
+                     <label class="switch">
+                        <input type="checkbox" name="status" value="1">
+                        <span class="slider round"></span>
+                     </label>
+                  </div>
+                  <hr />
+                  <div class="form-group w-50">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <select class="form-control statusFrom" name="source">
+                              <option value="Client">Client</option>
+                              <option value="Subcontractor">Subcontractor</option>
+                              <option value="Personal">Personal</option>
+                           </select>                        
+                        </div>
+                        <div class="col-md-6">
+                           <select class="form-control statusFrom" name="label">
+                              <option value="Painters">Painters</option>
+                              <option value="Drywallers">Drywallers</option value="">
+                              <option value="Framers">Framers</option>
+                           </select>                        
+                        </div>
+                     </div>
+                  </div>
 
-               <div class="contactInfoBox mb-2">
-                  <h3>Primary Information</h3>
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="First Name">
+                  <div class="contactInfoBox mb-2">
+                     <h3>Primary Information</h3>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="First Name" name="primary_f_name">
+                              <span class="primary_f_name_err alert text-danger error-form"></span>
+                           </div>
                         </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Last Name">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Last Name" name="primary_l_name">
+                              <span class="primary_l_name_err alert text-danger error-form"></span>
+                           </div>
                         </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Phone 1">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Phone 1" name="primary_phone_1">
+                           </div>
                         </div>
-                     </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                           <select class="form-control statusFrom">
-                              <option>Select Status</option>
-                              <option>xyz</option>
-                              <option>xyz 1</option>
-                           </select>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <select class="form-control statusFrom" name="primary_phone_1_type">
+                                 <option value="">Select Type</option>
+                                 <option value="Home">Home</option>
+                                 <option value="Office">Office</option>
+                              </select>
+                           </div>
                         </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Phone 2">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Phone 2" name="primary_phone_2">
+                           </div>
                         </div>
-                     </div>
-                    
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <select class="form-control statusFrom">
-                              <option>Select Drop List 2</option>
-                              <option>xyz</option>
-                              <option>xyz 1</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="col-md-12">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Email">
-                        </div>
-                     </div>
                      
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <select class="form-control statusFrom" name="primary_phone_2_type">
+                                 <option value="">Select Type</option>
+                                 <option value="Home">Home</option>
+                                 <option value="Office">Office</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Email" name="primary_email">
+                           </div>
+                        </div>
+                        
+                     </div>
                   </div>
-               </div>
-               <div class="contactInfoBox">
-                  <h3>Secondary Information</h3>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Relationship">
+                  <div class="contactInfoBox">
+                     <h3>Secondary Information</h3>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Relationship" name="relationship">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="First Name" name="secondary_f_name">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Last Name" name="secondary_l_name">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Phone 1" name="secondary_phone_1">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <select class="form-control statusFrom" name="secondary_phone_1_type">
+                                 <option value="">Select Type</option>
+                                 <option value="Home">Home</option>
+                                 <option value="Office">Office</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group" name="secondary_phone_2">
+                              <input class="form-control" type="text" placeholder="Phone 2">
+                           </div>
+                        </div>
+                     
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <select class="form-control statusFrom" name="secondary_phone_2_type">
+                                 <option value="">Select Type</option>
+                                 <option value="Home">Home</option>
+                                 <option value="Office">Office</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Email" name="secondary_email">
+                           </div>
+                        </div>
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Address" name="address">
+                           </div>
+                        </div>
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="City" name="city">
+                           </div>
+                        </div>
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="State" name="state">
+                           </div>
+                        </div>
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Zip Code" name="zipcode">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Company" name="company">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Title" name="title">
+                           </div>
+                        </div>
+                        <div class="col-md-12">
+                           <div class="form-group">
+                              <textarea class="form-control" rows="5" placeholder="Notes" name="notes"></textarea>
+                           </div>
                         </div>
                      </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="First Name">
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Last Name">
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Phone 1">
-                        </div>
-                     </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                           <select class="form-control statusFrom">
-                              <option>Select Status</option>
-                              <option>xyz</option>
-                              <option>xyz 1</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Phone 2">
-                        </div>
-                     </div>
-                    
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <select class="form-control statusFrom">
-                              <option>Select Drop List 2</option>
-                              <option>xyz</option>
-                              <option>xyz 1</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="col-md-12">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Email">
-                        </div>
-                     </div>
-                     <div class="col-md-12">
-                        <div class="form-group">
-                            <input class="form-control" type="text" placeholder="Address">
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="City">
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="State">
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Zip Code">
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Company">
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <input class="form-control" type="text" placeholder="Title">
-                        </div>
-                     </div>
-                     <div class="col-md-12">
-                        <div class="form-group">
-                           <textarea class="form-control" rows="5" placeholder="Notes"></textarea>
-                        </div>
-                     </div>
-                     <!-- <div class="col-md-4">
-                        <div class="form-group">
-                           <label>Send Email</label>
-                           <select class="form-control statusFrom">
-                              <option>Send Email</option>
-                              <option>xyz</option>
-                              <option>xyz 1</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="form-group">
-                           <label>To Do List Item</label>
-                           <select class="form-control statusFrom">
-                              <option>Add To Do Item</option>
-                              <option>xyz</option>
-                              <option>xyz 1</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="form-group">
-                           <label>Schedule Event</label>
-                           <select class="form-control statusFrom">
-                              <option>Schedule Event</option>
-                              <option>xyz</option>
-                              <option>xyz 1</option>
-                           </select>
-                        </div>
-                     </div> -->
                   </div>
+                  <button type="button" class="btn cbtn btn-rounded btn-primary add-contact-btn" >Save</button>
                </div>
-
-               <button type="button" class="btn cbtn btn-rounded btn-primary" data-dismiss="modal">Save</button>
-            </div>
+            </form>
         </div>
-       
-        
       </div>
-    </div>
-  </div>   
+   </div>
+</div>   
+
 @endsection 
+@section('scripts_extra')
+<script>
+   $(document).ready(function () {
+      $(document).on('click','.add-contact-btn', function(){
+         $('.error-form').empty();
+         $.ajax({
+            url: "{{ Route('admin.contacts.store') }}",
+            type:"POST",
+            data: $('#add_contacts').serialize(),
+            success:function(data){
+              
+               if ($.isEmptyObject(data.error)) {
+                  location.reload();
+               } else {
+                  printErrorMsg(data.error);
+               }
+            },
+         });
+      });
+   });
+   function printErrorMsg (msg) {
+      var count = 0;
+      $.each( msg, function( key, value ) {
+         if(count == 0){
+            $('input[name='+key+']').focus();
+         }
+         $('.'+key+'_err').text(value);
+         count++;
+      });
+   }
+
+   function archiveFunction(formID) {
+      event.preventDefault(); // prevent form submit
+      var form = document.getElementById(formID);
+      swal({
+         title: 'Are you sure?',
+         text: "You won't be able to revert this!",
+         type: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'Yes, delete it!'
+      }).then(function(isConfirm){
+         if (isConfirm.value == true) {
+            form.submit()
+         }
+      })
+   }
+</script>
+@endsection

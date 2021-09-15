@@ -90,4 +90,20 @@ class FullCalenderController extends Controller
              break;
         }
     }    
+    
+    public function googleEventList()
+    {
+        $events = calendarEvents();
+        if(count($events) > 0) : 
+            foreach($events as $key=>$event) : 
+                if($key==4) break;
+                echo '<li>
+                    <p class="text-muted mb-2">'.\Carbon\Carbon::parse($event->start->dateTime)->format("j F, Y") .'</p>
+                    <p class="mb-2">'.$event->name.'</p>
+                </li>';                            
+            endforeach;
+        else:
+            echo '<li><p class="mb-2 text-danger">No upcoming events available!</p></li>';
+        endif;        
+    }
 }

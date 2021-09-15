@@ -1,11 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 @section('content')
-<style>
-   .header-area,
-   footer{
-      display: none;
-   }
-</style>
 <section class="login">
    <div class="container-fluid">
       <div class="row">

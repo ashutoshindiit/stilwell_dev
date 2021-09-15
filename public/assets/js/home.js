@@ -326,71 +326,6 @@ jQuery(document).ready(function ($) {
           return data;
         }
 
-        var plot = $.plot(
-          "#flotChart",
-          [
-            {
-              data: chartData,
-              color: "#6146d6",
-              lines: {
-                fillColor: "rgba(97, 70, 214, .12)",
-              },
-            },
-          ],
-          {
-            series: {
-              shadowSize: 0,
-              lines: {
-                show: true,
-                lineWidth: 2,
-                fill: true,
-              },
-            },
-            grid: {
-              borderWidth: 0,
-              labelMargin: 8,
-            },
-            yaxis: {
-              show: true,
-              min: 0,
-              max: 100,
-              ticks: true,
-              tickLength: 0,
-              tickColor: "#000",
-            },
-            xaxis: {
-              show: true,
-              color: "#fff",
-              tickColor: "#fff",
-              ticks: [
-                [0, "Jan"],
-                [10, "Feb"],
-                [20, "Mar"],
-                [30, "Apr"],
-                [40, "May"],
-                [50, "Jun"],
-                [60, "Jul"],
-                [70, "Aug"],
-                [80, "Sep"],
-                [90, "Oct"],
-              ],
-              tickLength: 0,
-            },
-            yaxis: {
-              show: true,
-              color: "#fff",
-              // tickColor: "#edf2fa",
-              tickColor: "rgba(0,0,0,.05)",
-              ticks: [
-                [0, "0"],
-                [20, "$1000"],
-                [40, "$2000"],
-                [60, "$3000"],
-                [80, "$4000"],
-              ],
-            },
-          }
-        );
       });
 
     var recentSalesData = {
@@ -599,27 +534,6 @@ jQuery(document).ready(function ($) {
         {label: 'Very Unsatisfied', data: [[1, 15]], color: '#39DA8A'}
     ];
 
-    $.plot('#sales_country', piedata, {
-        series: {
-            pie: {
-                show: true,
-                radius: 1,
-                innerRadius: 0.6,
-                label: {
-                    show: true,
-                    radius: 3.2 / 4,
-                    formatter: textFormatter,
-                }
-            }
-        },
-        grid: {
-            hoverable: false,
-            clickable: false
-        },
-        legend: {
-            show: false
-        }
-    });
 
     function textFormatter(label, series) {
         return '<div style="font-size:10px; font-weight:700; text-align:center; color:#ffff;">' + Math.round(series.percent) + '%</div>';
