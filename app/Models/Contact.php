@@ -38,6 +38,12 @@ class Contact extends Model
                 'source',
                 'label',
                 'avatar',
-                'status'
+                'status',
+                'active'
             ]; 
+
+    public function getFullNameAttribute()
+    {
+        return ucfirst($this->primary_f_name) . ' ' . ucfirst($this->primary_l_name);
+    }
 }

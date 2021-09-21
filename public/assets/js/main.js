@@ -650,5 +650,14 @@ jQuery(document).ready(function () {
 });
 /*======== End Doucument Ready Function =========*/
 
-
+function printErrorMsg (id, msg) {
+    var count = 0;
+    $.each( msg, function( key, value ) {
+       if(count == 0){
+          $(id+' input[name='+key+']').focus();
+       }
+       $(id+' .'+key+'_err').text(value);
+       count++;
+    });
+ }
 

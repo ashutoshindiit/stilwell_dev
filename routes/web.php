@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EstimateController;
 use App\Http\Controllers\Admin\FullCalenderController;
+use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SendEmailController;
@@ -27,10 +30,6 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/forgot-password', function () {
-    
-})->name('forgot');
-
 Route::group(['middleware'=>'auth.check'], function() {
     Route::get('login', [AuthController::class, 'index'])->name('login');
     Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
@@ -43,9 +42,7 @@ Route::get('reset-password/{token}', [ResetPasswordController::class,'getPasswor
 Route::post('reset-password', [ResetPasswordController::class,'updatePassword'])->name('reset.updatePassword');
 
 Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=>'auth'], function() {
-    Route::get('/', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     Route::get('/roles',[RoleController::class,'index'])->name('roles')->middleware('admin');
     Route::get('/add-role',[RoleController::class,'create'])->name('role.create')->middleware('admin');
     Route::get('/edit-role/{id}',[RoleController::class,'edit'])->name('role.edit')->middleware('admin');
@@ -61,7 +58,12 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=>'auth'], functi
     Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
     Route::get('googleEventList', [FullCalenderController::class, 'googleEventList']);
     Route::resource('/contacts', ContactController::class);
+    Route::put('/contactStatus', [ContactController::class,'updateStatus'])->name('contact.status.update');
+    Route::resource('/leads', LeadController::class);
+    Route::put('/leadStatus', [LeadController::class,'updateStatus'])->name('lead.status.update');
     Route::get('/profile', [ProfileController::class,'index'])->name('profile');
     Route::put('/profile', [ProfileController::class,'update'])->name('profile.update');
     Route::post('/updateavatar', [ProfileController::class,'updateAvatar'])->name('updateavatar');
+    Route::resource('/estimates', EstimateController::class);
+    Route::put('/estimateStatus', [EstimateController::class,'updateStatus'])->name('estimate.status.update');
 });

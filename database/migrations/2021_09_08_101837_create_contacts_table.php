@@ -41,9 +41,11 @@ class CreateContactsTable extends Migration
             $table->string('source')->nullable();
             $table->string('label')->nullable();
             $table->string('avatar')->nullable();
-            $table->boolean('status')->nullable()->default('0');
+            $table->boolean('active')->nullable()->default('0');
+            $table->bigInteger('status')->nullable()->default('1')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('status')->references('id')->on('contact_statuses');
         });
     }
 

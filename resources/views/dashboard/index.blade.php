@@ -48,7 +48,7 @@
                <div class="card-body"  style="padding-top: 38px;">
                   <p class="card-title mb-0 text-white">Preliminary</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                     <h3 class="mb-0 text-white">5,009</h3>
+                     <h3 class="mb-0 text-white">{{ $contactstatus['Preliminary']['contacts_count'] }}</h3>
                      <div class="arrow_icon"><img src="{{ asset('assets/images/icon1.png') }}" alt="" width="30" /></div>
                   </div>
                   <!--p class="mb-0 text-white">1.92% <span class="text-white ml-1"><small>(Since last month)</small></span></p-->
@@ -61,7 +61,7 @@
                <div class="card-body" style="padding-top: 38px;">
                   <p class="card-title mb-0 text-white">Design Offered</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                     <h3 class="mb-0 text-white">94,356</h3>
+                     <h3 class="mb-0 text-white">{{ $contactstatus['Design Offered']['contacts_count'] }}</h3>
                      <div class="arrow_icon"><img src="{{ asset('assets/images/icon2.png') }}" alt="" width="30" /></div>
                   </div>
                   <!--p class="mb-0 text-white">1.92% <span class="text-white ml-1"><small>(Since last month)</small></span></p-->
@@ -74,7 +74,7 @@
                <div class="card-body"  style="padding-top: 38px;">
                   <p class="card-title mb-0 text-white">Design</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                     <h3 class="mb-0 text-white">1,253</h3>
+                     <h3 class="mb-0 text-white">{{ $contactstatus['Design']['contacts_count'] }}</h3>
                      <div class="arrow_icon"><img src="{{ asset('assets/images/icon3.png') }}" alt="" width="30" /></div>
                   </div>
                   <!--p class="mb-0 text-white">1.27% <span class="text-white ml-1"><small>(Since last month)</small></span></p-->
@@ -87,7 +87,7 @@
                <div class="card-body"  style="padding-top: 38px;">
                   <p class="card-title mb-0 text-white">Estimating</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                     <h3 class="mb-0 text-white">5,224</h3>
+                     <h3 class="mb-0 text-white">{{ $contactstatus['Estimating']['contacts_count'] }}</h3>
                      <div class="arrow_icon"><img src="{{ asset('assets/images/icon4.png') }}" alt="" width="30" /></div>
                   </div>
                   <!--p class="mb-0 text-white">9.12% <span class="text-white ml-1"><small>(Since last day)</small></span></p-->
@@ -100,7 +100,7 @@
                <div class="card-body" style="padding-top: 38px;">
                   <p class="card-title mb-0 text-white">Pending</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                     <h3 class="mb-0 text-white">1,437</h3>
+                     <h3 class="mb-0 text-white">{{ $contactstatus['Pending']['contacts_count'] }}</h3>
                      <div class="arrow_icon"><img src="{{ asset('assets/images/icon5.png') }}" alt="" width="30" /></div>
                   </div>
                   <!--p class="mb-0 text-white">1.92% <span class="text-white ml-1"><small>(Since last month)</small></span></p-->
@@ -113,7 +113,7 @@
                <div class="card-body"  style="padding-top: 38px;">
                   <p class="card-title mb-0 text-white">Active Project</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                     <h3 class="mb-0 text-white">3,135</h3>
+                     <h3 class="mb-0 text-white">{{ $contactstatus['Active Project']['contacts_count'] }}</h3>
                      <div class="arrow_icon"><img src="{{ asset('assets/images/icon6.png') }}" alt="" width="30" /></div>
                   </div>
                   <!--p class="mb-0 text-white">1.27% <span class="text-white ml-1"><small>(Since last month)</small></span></p-->
@@ -126,7 +126,7 @@
                <div class="card-body"  style="padding-top: 38px;">
                   <p class="card-title mb-0 text-white">Warranty</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                     <h3 class="mb-0 text-white">3,435</h3>
+                     <h3 class="mb-0 text-white">{{ $contactstatus['Warranty']['contacts_count'] }}</h3>
                      <div class="arrow_icon"><img src="{{ asset('assets/images/icon7.png') }}" alt="" width="30" /></div>
                   </div>
                   <!--p class="mb-0 text-white">9.12% <span class="text-white ml-1"><small>(Since last day)</small></span></p-->

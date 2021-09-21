@@ -22,13 +22,13 @@
                </a>
             </li>
             <li>
-               <a href="leads.php">
+               <a href="{{ Route('admin.leads.index') }}">
                <i class="feather ft-bar-chart"></i>
                <span>Leads</span>
                </a>
             </li>
             <li>
-               <a href="estimate.php">
+               <a href="{{ Route('admin.estimates.index') }}">
                <i class="feather ft-calendar"></i>
                <span>Estimate</span>
                </a>
