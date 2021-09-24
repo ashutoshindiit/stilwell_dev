@@ -12,7 +12,7 @@
             <div class="search-box pull-left">
                <form action="#" >
                   <i style="" class="ti-search"></i>
-                  <input type="text" name="search" placeholder="Search Contacts..." required="">
+                  <input type="text" name="search" id="lead_search" placeholder="Search Leads..." required="">
                </form>
             </div>
             <a class="ml-3 btn btn-rounded btn-primary" data-toggle="modal" data-target="#leadModal">Create New Lead</a>
@@ -55,21 +55,21 @@
                            <div class="row align-items-center mb-3">
                               <div class="col-12">
                                  <div class="custom-control custom-radio primary-radio custom-control-inline">
-                                    <input type="radio" checked="" id="customRadio4" name="customRadio2" class="custom-control-input">
-                                    <label style="font-weight: 400;font-size: 14px;" class="custom-control-label" for="customRadio4">Show Active</label>
-                                 </div>
-                                 <div class="custom-control custom-radio primary-radio custom-control-inline">
-                                    <input type="radio"  id="customRadio14" name="customRadio2" class="custom-control-input">
+                                    <input type="radio" checked value="" id="customRadio14" name="leadStatusChk" class="custom-control-input">
                                     <label style="font-weight: 400;font-size: 14px;" class="custom-control-label" for="customRadio14">Show All</label>
                                  </div>
                                  <div class="custom-control custom-radio primary-radio custom-control-inline">
-                                    <input type="radio"  id="customRadio41" name="customRadio2" class="custom-control-input">
-                                    <label style="font-weight: 400;font-size: 14px;" class="custom-control-label" for="customRadio41">Show Archived</label>
+                                    <input type="radio" value="Active" id="customRadio4" name="leadStatusChk" class="custom-control-input">
+                                    <label style="font-weight: 400;font-size: 14px;" class="custom-control-label" for="customRadio4">Show Active</label>
+                                 </div>
+                                 <div class="custom-control custom-radio primary-radio custom-control-inline">
+                                    <input type="radio" value="Inactive" id="customRadio41" name="leadStatusChk" class="custom-control-input">
+                                    <label style="font-weight: 400;font-size: 14px;" class="custom-control-label" for="customRadio41">Show Inactive</label>
                                  </div>
                               </div>
                            </div>
                            <div class="table-responsive">
-                              <table id="dataTable"  class="table text-center">
+                              <table id="dataTableLead"  class="table text-center">
                                  <thead class="bg-light text-capitalize">
                                     <tr>
                                        <th>First Name</th>
@@ -107,7 +107,7 @@
                                              </td>
                                              <td>
                                                 <ul class="d-flex justify-content-center">
-                                                   <li class="mr-3"><a href="#" class="text-info"><i class="fa fa-eye"></i></a></li>
+                                                   <li class="mr-3"><a href="#" class="text-info view_lead"><i class="fa fa-eye"></i></a></li>
                                                    <li class="mr-3"><a href="#" class="text-primary edit-lead"><i class="fa fa-edit"></i></a></li>
                                                    <form action="{{ Route('admin.leads.destroy',['lead'=>$lead->id]) }}" id="delete_lead_{{$lead->id}}" method="post">
                                                       @csrf
@@ -250,113 +250,289 @@
 
    <div class="modal contact-modal" id="leadModalEdit">
       <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-         <div class="modal-header p-0">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-         </div>
-         <div class="modal-body">
-            <form id="update_leads" action="" method="post"> 
-               <div class="contactInfo">
-                  <h2>Edit Lead</h2>
-                  <div class="switchBox">
-                     <span class="ac">Active</span>
-                     <label class="switch">
-                        <input type="hidden" name="active" value="0">
-                        <input type="checkbox" name="active" value="1">
-                        <span class="slider round"></span>
-                     </label>
-                  </div>
-                  <hr />
-                  <div class="contactInfoBox">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <input class="form-control" type="text" placeholder="Project Name" name="project_name">
-                              <span class="project_name_err alert text-danger error-form"></span>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <input class="form-control" type="text" placeholder="Project Type" name="project_type">
-                              <span class="project_type_err alert text-danger error-form"></span>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <input class="form-control" type="text" placeholder="First Name" name="first_name">
-                              <span class="first_name_err alert text-danger error-form"></span>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <input class="form-control" type="text" placeholder="Last Name" name="last_name">
-                              <span class="last_name_err alert text-danger error-form"></span>                          
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <input class="form-control" type="text" placeholder="Lead Source" name="source">
-                           </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                           <div class="form-group">
+         <div class="modal-content">
+            <div class="modal-header p-0">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+               <form id="update_leads" action="" method="post"> 
+                  <div class="contactInfo">
+                     <h2>Edit Lead</h2>
+                     <div class="switchBox">
+                        <span class="ac">Active</span>
+                        <label class="switch">
+                           <input type="hidden" name="active" value="0">
+                           <input type="checkbox" name="active" value="1">
+                           <span class="slider round"></span>
+                        </label>
+                     </div>
+                     <hr />
+                     <div class="contactInfoBox">
+                        <div class="row">
+                           <div class="col-md-6">
                               <div class="form-group">
-                                 <select class="form-control" name="contact_id">
-                                    <option value="">Select Contact</option>
-                                    @if($contacts)
-                                    @foreach($contacts as $contact)
-                                       <option value="{{ $contact->id }}"> {{ $contact->full_name }}</option>
-                                    @endforeach
-                                    @endif
-                                 </select>
-                                 <span class="contact_id_err alert text-danger error-form"></span>
+                                 <input class="form-control" type="text" placeholder="Project Name" name="project_name">
+                                 <span class="project_name_err alert text-danger error-form"></span>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <input class="form-control" type="text" placeholder="Project Type" name="project_type">
+                                 <span class="project_type_err alert text-danger error-form"></span>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <input class="form-control" type="text" placeholder="First Name" name="first_name">
+                                 <span class="first_name_err alert text-danger error-form"></span>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <input class="form-control" type="text" placeholder="Last Name" name="last_name">
+                                 <span class="last_name_err alert text-danger error-form"></span>                          
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <input class="form-control" type="text" placeholder="Lead Source" name="source">
+                              </div>
+                           </div>
+                           
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <div class="form-group">
+                                    <select class="form-control" name="contact_id">
+                                       <option value="">Select Contact</option>
+                                       @if($contacts)
+                                       @foreach($contacts as $contact)
+                                          <option value="{{ $contact->id }}"> {{ $contact->full_name }}</option>
+                                       @endforeach
+                                       @endif
+                                    </select>
+                                    <span class="contact_id_err alert text-danger error-form"></span>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Project Address</label>
+                                 <div class="custom-control custom-checkbox">
+                                 <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                                 <label class="custom-control-label" for="customCheck1">Click if Different From Home Address</label>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <input class="form-control" type="text" placeholder="Address" name="address">
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <input class="form-control" type="text" placeholder="City" name="city">
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <input class="form-control" type="text" placeholder="State" name="state">
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <input class="form-control" type="text" placeholder="Zip Code" name="zipcode">
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <textarea class="form-control" rows="5" placeholder="Notes" name="notes"></textarea>
                               </div>
                            </div>
                         </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label>Project Address</label>
-                              <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                              <label class="custom-control-label" for="customCheck1">Click if Different From Home Address</label>
+                     </div>
+                     <button type="button" class="btn cbtn btn-rounded btn-primary update-lead-btn">Update</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>  
+   <!-- View Lead The Modal -->
+   <div class="modal contact-modal" id="viewLead">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+         <div class="modal-content">
+            <div class="modal-header p-0">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body viewBox1">
+               <form id="view_lead" action="" method="post">
+                  <div class="contactInfo">
+                     <h2 class="d-flex justify-content-between align-items-center">View Contact <span class="v_status"><i class="fa fa-check" aria-hidden="true"></i> Active</span></h2>
+                     <hr />
+                     <div class="contactInfoBox   mb-2">
+                        <h3>Primary Information</h3>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>First Name</label>
+                                 <h4 class="v_primary_f_name">Charles</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Last Name</label>
+                                 <h4 class="v_primary_l_name">Johnson</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Phone1</label>
+                                 <h4 class="v_primary_phone_1">123456789</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Type</label>
+                                 <h4 class="v_primary_phone_1_type">Home</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Phone2</label>
+                                 <h4 class="v_primary_phone_2">123456789</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Type</label>
+                                 <h4 class="v_primary_phone_2_type">Office</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label>Email</label>
+                                 <h4 class="v_primary_email">abc@gmail.com</h4>
                               </div>
                            </div>
                         </div>
-                        <div class="col-md-12">
-                           <div class="form-group">
-                              <input class="form-control" type="text" placeholder="Address" name="address">
+                     </div>
+                     <div class="contactInfoBox">
+                        <h3>Secondary Information</h3>
+                        <div class="row">
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label>Relationship</label>
+                                 <h4 class="v_relationship">abc@gmail.com</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>First Name</label>
+                                 <h4 class="v_secondary_f_name">Charles</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Last Name</label>
+                                 <h4 class="v_secondary_l_name">Johnson</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Phone1</label>
+                                 <h4 class="v_secondary_phone_1">123456789</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Type</label>
+                                 <h4 class="v_secondary_phone_1_type">Home</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Phone1</label>
+                                 <h4 class="v_secondary_phone_2">123456789</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Type</label>
+                                 <h4 class="v_secondary_phone_2_type">Office</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label>Email</label>
+                                 <h4 class="v_secondary_email">abc@gmail.com</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label>Address</label>
+                                 <h4 class="v_address">#40 New York</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <label>City</label>
+                                 <h4 class="v_city">Xyz</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <label>State</label>
+                                 <h4 class="v_state">Xyz</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <label>Zip Code</label>
+                                 <h4 class="v_zipcode">123456</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Company</label>
+                                 <h4 class="v_company">Xyz</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Title</label>
+                                 <h4 class="v_title">Xyz</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label>Notes</label>
+                                 <h4 class="v_notes">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</h4>
+                              </div>
                            </div>
                         </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <input class="form-control" type="text" placeholder="City" name="city">
+                     </div>
+                     <div class="contactInfoBox">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Type</label>
+                                 <h4 class="v_source">Personal</h4>
+                              </div>
                            </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <input class="form-control" type="text" placeholder="State" name="state">
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <input class="form-control" type="text" placeholder="Zip Code" name="zipcode">
-                           </div>
-                        </div>
-                        <div class="col-md-12">
-                           <div class="form-group">
-                              <textarea class="form-control" rows="5" placeholder="Notes" name="notes"></textarea>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Label</label>
+                                 <h4 class="v_label">Painters</h4>
+                              </div>
                            </div>
                         </div>
                      </div>
                   </div>
-                  <button type="button" class="btn cbtn btn-rounded btn-primary update-lead-btn">Update</button>
-               </div>
-            </form>
+               </form>
+            </div>
          </div>
       </div>
-      </div>
-   </div>     
+   </div>      
 @endsection 
 
 @section('scripts_extra')
@@ -364,6 +540,44 @@
 <script>
    $(document).ready(function () {
 
+      var table = $('#dataTableLead').DataTable();
+
+      $(document).on('keyup','#lead_search', function(e){
+         table.search(this.value).draw();
+      });
+
+      $('input:radio[name="leadStatusChk"]').change(function(){
+
+         var searchTerm = this.value.toLowerCase()
+         if (!searchTerm) {
+            table.draw();   
+            return;
+         }
+         table.search(this.value, true, false, true ).draw();
+         $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            if (data[4].toLowerCase() == searchTerm) return true
+            return false
+         })
+         table.draw();   
+         $.fn.dataTable.ext.search.pop()
+      });  
+
+      $(document).on('click','.view_lead', function(e){
+         e.preventDefault();
+         var lear_id = $(this).parents('tr').attr('data-leadId');
+         var $this = $(this);
+         if(lear_id){
+            var url = "{{ route('admin.leads.show', ['lead'=>':id']) }}";
+            url = url.replace(':id', lear_id);
+            $.ajax({
+               url: url,
+               type:"GET",
+               success:function(data){
+                  openViewLead(data);                      
+               },
+            });            
+         }
+      });
 
       $(document).on('click','.edit-lead', function(e){
          e.preventDefault();
@@ -481,5 +695,42 @@
       $('#update_leads .update-lead-btn').attr('lead-id',data.id);
       $('#leadModalEdit').modal('show');
    }   
+
+   function openViewLead(data)
+   {
+      console.log(data);
+      $('#viewcontact .v_source').html(data.source);
+      $('#viewcontact .v_label').html(data.label);
+      if(data.active == 1){
+         $('#viewcontact .v_status').html('<i class="fa fa-check" aria-hidden="true"></i> Active');
+      }else{
+         $('#viewcontact .v_status').html('<i class="fa fa-close" aria-hidden="true"></i> Inactive');
+      }
+      $('#viewcontact .v_primary_f_name').html(data.primary_f_name);
+      $('#viewcontact .v_primary_l_name').html(data.primary_l_name);
+      $('#viewcontact .v_primary_phone_1').html(data.primary_phone_1);
+      $('#viewcontact .v_primary_phone_1_type').html(data.primary_phone_1_type);
+      $('#viewcontact .v_primary_phone_2').html(data.primary_phone_2);
+      $('#viewcontact .v_primary_phone_2_type').html(data.primary_phone_2_type);
+      $('#viewcontact .v_primary_email').html(data.primary_email);
+      $('#viewcontact .v_relationship').html(data.relationship);
+      $('#viewcontact .v_secondary_f_name').html(data.secondary_f_name);
+      $('#viewcontact .v_secondary_l_name').html(data.secondary_l_name);
+      $('#viewcontact .v_secondary_phone_1').html(data.secondary_phone_1);
+      $('#viewcontact .v_secondary_phone_1_type').html(data.secondary_phone_1_type);
+      $('#viewcontact .v_secondary_phone_2').html(data.secondary_phone_2);
+      $('#viewcontact .v_secondary_phone_2_type').html(data.secondary_phone_2_type);   
+      $('#viewcontact .v_secondary_email').html(data.secondary_email);   
+      $('#viewcontact .v_address').html(data.address);
+      $('#viewcontact .v_city').html(data.city);
+      $('#viewcontact .v_state').html(data.state);
+      $('#viewcontact .v_zipcode').html(data.zipcode);
+      $('#viewcontact .v_company').html(data.company);
+      $('#viewcontact .v_title').html(data.title);
+      $('#viewcontact .v_notes').html(data.notes);
+      $('#viewLead').modal('show');
+   }
+
+
 </script>
 @endsection

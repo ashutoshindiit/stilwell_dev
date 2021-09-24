@@ -12,7 +12,7 @@
             <div class="search-box pull-left">
                <form action="#" >
                   <i style="" class="ti-search"></i>
-                  <input type="text" name="search" placeholder="Search Estimates..." required="">
+                  <input type="text" id="estimate_search" name="search" placeholder="Search Estimates..." required="">
                </form>
             </div>
             <button type="button" class="ml-3 btn btn-rounded btn-primary">Open Estimate</button>
@@ -35,21 +35,21 @@
                   <div class="row align-items-center">
                      <div class="col-12 text-left mb-3">
                         <div class="custom-control custom-radio primary-radio custom-control-inline">
-                           <input type="radio" checked="" id="customRadio4" name="customRadio2" class="custom-control-input">
-                           <label style="font-weight: 400;font-size: 14px;" class="custom-control-label" for="customRadio4">Show Active</label>
-                        </div>
-                        <div class="custom-control custom-radio primary-radio custom-control-inline">
-                           <input type="radio"  id="customRadio14" name="customRadio2" class="custom-control-input">
+                           <input type="radio" value="" id="customRadio14" name="estimateStatusChk" class="custom-control-input" checked>
                            <label style="font-weight: 400;font-size: 14px;" class="custom-control-label" for="customRadio14">Show All</label>
                         </div>
                         <div class="custom-control custom-radio primary-radio custom-control-inline">
-                           <input type="radio"  id="customRadio41" name="customRadio2" class="custom-control-input">
-                           <label style="font-weight: 400;font-size: 14px;" class="custom-control-label" for="customRadio41">Show Archived</label>
+                           <input type="radio" value="Active" id="customRadio4" name="estimateStatusChk" class="custom-control-input">
+                           <label style="font-weight: 400;font-size: 14px;" class="custom-control-label" for="customRadio4">Show Active</label>
+                        </div>
+                        <div class="custom-control custom-radio primary-radio custom-control-inline">
+                           <input type="radio" value="Inactive" id="customRadio41" name="estimateStatusChk" class="custom-control-input">
+                           <label style="font-weight: 400;font-size: 14px;" class="custom-control-label" for="customRadio41">Show Inactive</label>
                         </div>
                      </div>
                   </div>
                   <div class="table-responsive">
-                     <table id="dataTable"  class="table text-center">
+                     <table id="dataTableEstimate"  class="table text-center">
                         <thead class="bg-light text-capitalize">
                            <tr>
                               <th>Last Name</th>
@@ -434,7 +434,27 @@
 
 <script>
    $(document).ready(function () {
+      
+      var table = $('#dataTableEstimate').DataTable();
+      
+      $(document).on('keyup','#estimate_search', function(e){
+         table.search(this.value).draw();
+      });
 
+      $('input:radio[name="estimateStatusChk"]').change(function(){
+         var searchTerm = this.value.toLowerCase()
+         if (!searchTerm) {
+            table.draw();   
+            return;
+         }
+         table.search(this.value, true, false, true ).draw();
+         $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            if (data[4].toLowerCase() == searchTerm) return true
+            return false
+         })
+         table.draw();   
+         $.fn.dataTable.ext.search.pop()
+      });   
 
       $(document).on('click','.edit-estimate', function(e){
          e.preventDefault();

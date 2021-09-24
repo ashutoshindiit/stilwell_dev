@@ -7531,3 +7531,25 @@ body.darker {
 table.dataTable tbody td a i {
     font-size: 18px;
 }
+
+/* New Css Added For View Pages */
+.viewBox1 h4 {
+  margin-bottom: 0;
+  padding: 12px 12px;
+  border-radius: 3px;
+  font-size: 14px;
+  background-color: #f3f3f4;
+  color: #000;
+  line-height: 21px;
+  font-weight: 400;
+}
+
+.viewBox1 h2 span
+{
+font-size: 14px;
+
+  background-color: green;
+  padding: 6px 9px;
+  color: #fff;
+  border-radius: 5px;
+}

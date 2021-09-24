@@ -311,7 +311,6 @@
         <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
         <script src="{{ asset('assets/vendors/charts/charts-bundle/Chart.bundle.js') }}"></script>
-        <script src="{{ asset('assets/vendors/data-table/js/jquery.dataTables.js') }}"></script>
         <script src="{{ asset('assets/vendors/data-table/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/vendors/data-table/js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('assets/vendors/data-table/js/dataTables.responsive.min.js') }}"></script>
