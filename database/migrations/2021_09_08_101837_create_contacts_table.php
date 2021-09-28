@@ -42,6 +42,7 @@ class CreateContactsTable extends Migration
             $table->string('label')->nullable();
             $table->string('avatar')->nullable();
             $table->boolean('active')->nullable()->default('0');
+            $table->bigInteger('user_id')->nullable()->unsigned();
             $table->bigInteger('status')->nullable()->default('1')->unsigned();
             $table->timestamps();
             $table->softDeletes();

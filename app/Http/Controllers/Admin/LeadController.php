@@ -60,7 +60,7 @@ class LeadController extends Controller
 
     public function show($id)
     {
-        $lead = Lead::findOrFail($id);
+        $lead = Lead::with('contact')->findOrFail($id);
         return $lead;
     }    
 

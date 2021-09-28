@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Estimate extends Model
 {
@@ -36,4 +37,21 @@ class Estimate extends Model
 	{
 	    return json_decode($value);
 	}
+
+    public function save(array $options = array())
+    {
+        if( ! $this->user_id)
+        {
+            $this->user_id = Auth::user()->id;
+        }
+
+        parent::save($options);
+    }
+
+    public static function query()
+    {
+        $query = parent::query();
+        $query->where('user_id',Auth::user()->id);
+        return $query;
+    }    
 }

@@ -16,7 +16,9 @@
                   <input type="text" id="contact_search" placeholder="Search Contacts..." required>
                </form>
             </div>
+            @if(Auth::user()->permission('contacts','create') == 1)
             <button type="button" class="ml-3 btn btn-rounded btn-primary" data-toggle="modal" data-target="#contactModal">New Contact</button>
+            @endif
             <button type="button" class="ml-2 btn btn-rounded  btn-info">Open Contact</button>
             <button style="float: right;" type="button" class="ml-2 btn btn-rounded  btn-outline-primary">Create New Lead</button>
          </div>
@@ -114,12 +116,16 @@
                                           <td>
                                              <ul class="d-flex justify-content-center">
                                                 <li class="mr-3"><a href="#" data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="text-info view_contact"><i class="fa fa-eye"></i></a></li>
+                                                @if(Auth::user()->permission('contacts','update') == 1)
                                                 <li class="mr-3"><a href="#" class="text-primary edit-contact"><i class="fa fa-edit"></i></a></li>
+                                                @endif
+                                                @if(Auth::user()->permission('contacts','delete') == 1)
                                                 <form action="{{ Route('admin.contacts.destroy',['contact'=>$contact->id]) }}" id="delete_contact_{{$contact->id}}" method="post">
                                                    @csrf
                                                    @method('DELETE')
                                                 </form>                                                
                                                 <li><a href="#"  onclick="archiveFunction('delete_contact_{{$contact->id}}')" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                @endif
                                              </ul>
                                        </td>
                                        </tr>                                       

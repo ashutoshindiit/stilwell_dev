@@ -30,6 +30,7 @@ class CreateEstimatesTable extends Migration
             $table->longText('notes')->nullable();            
             $table->json('markups')->nullable();
             $table->boolean('active')->nullable()->default('0');
+            $table->bigInteger('user_id')->nullable()->unsigned();
             $table->timestamps();
             $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');    
             $table->foreign('status')->references('id')->on('contact_statuses');      

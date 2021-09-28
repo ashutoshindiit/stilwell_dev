@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Auth;
+use DB;
 
 class User extends Authenticatable
 {
@@ -58,4 +60,16 @@ class User extends Authenticatable
         }
     }
 
+    public function permission($page,$access)
+    {
+        $role_id = Auth::user()->role_id;
+        $permision = Permission::where('slug', $page)->select('id')->first();
+        if($permision){
+            $is_access = RolesPermission::where('role_id',$role_id)->where('permission_id',$permision->id)->where($access,1)->first();
+            return ($is_access) ? true : false;
+        }else{
+            return false;
+        }
+
+    }
 }

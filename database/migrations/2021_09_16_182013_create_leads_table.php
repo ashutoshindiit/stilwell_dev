@@ -29,6 +29,7 @@ class CreateLeadsTable extends Migration
             $table->string('zipcode')->nullable();
             $table->longText('notes')->nullable();
             $table->boolean('active')->nullable()->default('0');
+            $table->bigInteger('user_id')->nullable()->unsigned();
             $table->timestamps();
             $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');    
             $table->foreign('status')->references('id')->on('contact_statuses');        

@@ -15,43 +15,54 @@
                <span>Dashboard</span>
                </a>
             </li>
+            @if(Auth::user()->permission('contacts','read') == 1)
             <li>
                <a href="{{ Route('admin.contacts.index') }}">
                <i class="feather ft-phone"></i>
                <span>Contacts</span>
                </a>
             </li>
+            @endif
+            @if(Auth::user()->permission('leads','read') == 1)
             <li>
                <a href="{{ Route('admin.leads.index') }}">
                <i class="feather ft-bar-chart"></i>
                <span>Leads</span>
                </a>
             </li>
+            @endif
+            @if(Auth::user()->permission('estimates','read') == 1)
             <li>
                <a href="{{ Route('admin.estimates.index') }}">
                <i class="feather ft-calendar"></i>
                <span>Estimate</span>
                </a>
             </li>
+            @endif
+            @if(Auth::user()->permission('projects','read') == 1)
             <li>
                <a href="#">
                <i class="feather ft-file-text"></i>
                <span>Project</span>
                </a>
             </li>
-           
+            @endif
+            @if(Auth::user()->permission('reports','read') == 1)
             <li>
                <a href="#">
                <i class="feather ft-pie-chart"></i>
                <span>Reports</span>
                </a>
             </li>
+            @endif
+            @if(Auth::user()->permission('products','read') == 1)
             <li>
                <a href="#">
                <i class="feather ft-shopping-cart"></i>
                <span>Product</span>
                </a>
             </li>
+            @endif
             @if(Auth::user()->role->name == "Admin")
              <li>
                <a href="{{ Route('admin.roles') }}">

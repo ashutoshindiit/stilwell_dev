@@ -15,7 +15,9 @@
                   <input type="text" name="search" id="lead_search" placeholder="Search Leads..." required="">
                </form>
             </div>
+            @if(Auth::user()->permission('leads','create') == 1)
             <a class="ml-3 btn btn-rounded btn-primary" data-toggle="modal" data-target="#leadModal">Create New Lead</a>
+            @endif
             <a class="ml-2 btn btn-rounded  btn-info">Open Lead</a>
             <a style="float: right;" class="ml-2 btn btn-rounded  btn-outline-primary">Create New Estimate</a>
          </div>
@@ -108,12 +110,16 @@
                                              <td>
                                                 <ul class="d-flex justify-content-center">
                                                    <li class="mr-3"><a href="#" class="text-info view_lead"><i class="fa fa-eye"></i></a></li>
+                                                   @if(Auth::user()->permission('leads','update') == 1)
                                                    <li class="mr-3"><a href="#" class="text-primary edit-lead"><i class="fa fa-edit"></i></a></li>
+                                                   @endif
+                                                   @if(Auth::user()->permission('leads','delete') == 1)
                                                    <form action="{{ Route('admin.leads.destroy',['lead'=>$lead->id]) }}" id="delete_lead_{{$lead->id}}" method="post">
                                                       @csrf
                                                       @method('DELETE')
                                                    </form>                                                      
                                                    <li><a href="#" onclick="archiveFunction('delete_lead_{{$lead->id}}')" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                   @endif
                                                 </ul>
                                              </td>
                                           </tr>                                          
@@ -367,106 +373,51 @@
             <div class="modal-body viewBox1">
                <form id="view_lead" action="" method="post">
                   <div class="contactInfo">
-                     <h2 class="d-flex justify-content-between align-items-center">View Contact <span class="v_status"><i class="fa fa-check" aria-hidden="true"></i> Active</span></h2>
+                     <h2 class="d-flex justify-content-between align-items-center">View Lead <span class="v_status"><i class="fa fa-check" aria-hidden="true"></i> Active</span></h2>
                      <hr />
-                     <div class="contactInfoBox   mb-2">
-                        <h3>Primary Information</h3>
+                     <div class="contactInfoBox mb-2">
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
+                                 <label>Project Name</label>
+                                 <h4 class="v_project_name">Charles</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label>Project Type</label>
+                                 <h4 class="v_project_type">Charles</h4>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
                                  <label>First Name</label>
-                                 <h4 class="v_primary_f_name">Charles</h4>
+                                 <h4 class="v_f_name">Charles</h4>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label>Last Name</label>
-                                 <h4 class="v_primary_l_name">Johnson</h4>
+                                 <h4 class="v_l_name">Johnson</h4>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label>Phone1</label>
-                                 <h4 class="v_primary_phone_1">123456789</h4>
+                                 <label>Lead Source</label>
+                                 <h4 class="v_lead_source">123456789</h4>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label>Type</label>
-                                 <h4 class="v_primary_phone_1_type">Home</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Phone2</label>
-                                 <h4 class="v_primary_phone_2">123456789</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Type</label>
-                                 <h4 class="v_primary_phone_2_type">Office</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label>Email</label>
-                                 <h4 class="v_primary_email">abc@gmail.com</h4>
+                                 <label>Contact</label>
+                                 <h4 class="v_contact">Home</h4>
                               </div>
                            </div>
                         </div>
                      </div>
                      <div class="contactInfoBox">
-                        <h3>Secondary Information</h3>
+                        <h3>Project Address</h3>
                         <div class="row">
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label>Relationship</label>
-                                 <h4 class="v_relationship">abc@gmail.com</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>First Name</label>
-                                 <h4 class="v_secondary_f_name">Charles</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Last Name</label>
-                                 <h4 class="v_secondary_l_name">Johnson</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Phone1</label>
-                                 <h4 class="v_secondary_phone_1">123456789</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Type</label>
-                                 <h4 class="v_secondary_phone_1_type">Home</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Phone1</label>
-                                 <h4 class="v_secondary_phone_2">123456789</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Type</label>
-                                 <h4 class="v_secondary_phone_2_type">Office</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label>Email</label>
-                                 <h4 class="v_secondary_email">abc@gmail.com</h4>
-                              </div>
-                           </div>
                            <div class="col-md-12">
                               <div class="form-group">
                                  <label>Address</label>
@@ -491,38 +442,10 @@
                                  <h4 class="v_zipcode">123456</h4>
                               </div>
                            </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Company</label>
-                                 <h4 class="v_company">Xyz</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Title</label>
-                                 <h4 class="v_title">Xyz</h4>
-                              </div>
-                           </div>
                            <div class="col-md-12">
                               <div class="form-group">
                                  <label>Notes</label>
                                  <h4 class="v_notes">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</h4>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="contactInfoBox">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Type</label>
-                                 <h4 class="v_source">Personal</h4>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label>Label</label>
-                                 <h4 class="v_label">Painters</h4>
                               </div>
                            </div>
                         </div>
@@ -699,35 +622,24 @@
    function openViewLead(data)
    {
       console.log(data);
-      $('#viewcontact .v_source').html(data.source);
-      $('#viewcontact .v_label').html(data.label);
       if(data.active == 1){
-         $('#viewcontact .v_status').html('<i class="fa fa-check" aria-hidden="true"></i> Active');
+         $('#viewLead .v_status').html('<i class="fa fa-check" aria-hidden="true"></i> Active');
       }else{
-         $('#viewcontact .v_status').html('<i class="fa fa-close" aria-hidden="true"></i> Inactive');
+         $('#viewLead .v_status').html('<i class="fa fa-close" aria-hidden="true"></i> Inactive');
       }
-      $('#viewcontact .v_primary_f_name').html(data.primary_f_name);
-      $('#viewcontact .v_primary_l_name').html(data.primary_l_name);
-      $('#viewcontact .v_primary_phone_1').html(data.primary_phone_1);
-      $('#viewcontact .v_primary_phone_1_type').html(data.primary_phone_1_type);
-      $('#viewcontact .v_primary_phone_2').html(data.primary_phone_2);
-      $('#viewcontact .v_primary_phone_2_type').html(data.primary_phone_2_type);
-      $('#viewcontact .v_primary_email').html(data.primary_email);
-      $('#viewcontact .v_relationship').html(data.relationship);
-      $('#viewcontact .v_secondary_f_name').html(data.secondary_f_name);
-      $('#viewcontact .v_secondary_l_name').html(data.secondary_l_name);
-      $('#viewcontact .v_secondary_phone_1').html(data.secondary_phone_1);
-      $('#viewcontact .v_secondary_phone_1_type').html(data.secondary_phone_1_type);
-      $('#viewcontact .v_secondary_phone_2').html(data.secondary_phone_2);
-      $('#viewcontact .v_secondary_phone_2_type').html(data.secondary_phone_2_type);   
-      $('#viewcontact .v_secondary_email').html(data.secondary_email);   
-      $('#viewcontact .v_address').html(data.address);
-      $('#viewcontact .v_city').html(data.city);
-      $('#viewcontact .v_state').html(data.state);
-      $('#viewcontact .v_zipcode').html(data.zipcode);
-      $('#viewcontact .v_company').html(data.company);
-      $('#viewcontact .v_title').html(data.title);
-      $('#viewcontact .v_notes').html(data.notes);
+      $('#viewLead .v_project_name').html(data.project_name);
+      $('#viewLead .v_project_type').html(data.project_type);
+      $('#viewLead .v_f_name').html(data.first_name);
+      $('#viewLead .v_l_name').html(data.last_name);
+      $('#viewLead .v_lead_source').html(data.source);
+      $('#viewLead .v_contact').html(data.contact.primary_f_name+ " "+data.contact.primary_l_name);
+      $('#viewLead .v_address').html(data.address);
+      $('#viewLead .v_city').html(data.city);
+      $('#viewLead .v_state').html(data.state);
+      $('#viewLead .v_zipcode').html(data.zipcode);
+      $('#viewLead .v_company').html(data.company);
+      $('#viewLead .v_title').html(data.title);
+      $('#viewLead .v_notes').html(data.notes);
       $('#viewLead').modal('show');
    }
 

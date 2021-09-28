@@ -25,6 +25,10 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials,$remember_me)) {
+            if(Auth::check() && Auth::user()->status == 0){
+                Auth::logout();
+                return redirect()->back()->withInput($request->all())->withErrors('Sorry, Your account is not activated yet!');
+            }
             return redirect()->intended('admin')
                         ->withSuccess('You have Successfully loggedin');
         }

@@ -41,7 +41,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('reset-password/{token}', [ResetPasswordController::class,'getPassword']);
 Route::post('reset-password', [ResetPasswordController::class,'updatePassword'])->name('reset.updatePassword');
 
-Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=>'auth'], function() {
+Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=>['auth']], function() {
     Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     Route::get('/roles',[RoleController::class,'index'])->name('roles')->middleware('admin');
     Route::get('/add-role',[RoleController::class,'create'])->name('role.create')->middleware('admin');
@@ -57,13 +57,13 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=>'auth'], functi
     Route::get('fullcalender', [FullCalenderController::class, 'index']);
     Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
     Route::get('googleEventList', [FullCalenderController::class, 'googleEventList']);
-    Route::resource('/contacts', ContactController::class);
+    Route::resource('/contacts', ContactController::class)->middleware('permission');
     Route::put('/contactStatus', [ContactController::class,'updateStatus'])->name('contact.status.update');
-    Route::resource('/leads', LeadController::class);
+    Route::resource('/leads', LeadController::class)->middleware('permission');;
     Route::put('/leadStatus', [LeadController::class,'updateStatus'])->name('lead.status.update');
     Route::get('/profile', [ProfileController::class,'index'])->name('profile');
     Route::put('/profile', [ProfileController::class,'update'])->name('profile.update');
     Route::post('/updateavatar', [ProfileController::class,'updateAvatar'])->name('updateavatar');
-    Route::resource('/estimates', EstimateController::class);
+    Route::resource('/estimates', EstimateController::class)->middleware('permission');
     Route::put('/estimateStatus', [EstimateController::class,'updateStatus'])->name('estimate.status.update');
 });
