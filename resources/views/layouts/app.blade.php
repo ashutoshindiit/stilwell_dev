@@ -246,11 +246,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Event start</label>
-                                <input type="text" id="add_event_start" class="form-control col-xs-3 event-datepicker" />
+                                <input type="text" id="add_event_start" class="form-control col-xs-3 event-datepicker-d1" />
                             </div>
                             <div class="form-group">
                                 <label>Event end</label>
-                                <input type="text" id="add_event_end" class="form-control col-xs-3 event-datepicker" />
+                                <input type="text" id="add_event_end" class="form-control col-xs-3 event-datepicker-d2" />
                             </div>
                         </form>
                     </div>

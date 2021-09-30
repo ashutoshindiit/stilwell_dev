@@ -95,6 +95,21 @@
    </div>
 </section>
 @endsection 
+@section('scripts_extra')
+<script>
+   $(document).ready(function () {
+      $('.toggle-password').click(function(){
+         var elem = $('#password');
+         $(this).toggleClass("fa-eye fa-eye-slash");
+         if (elem.attr("type") == "password") {
+            elem.attr("type", "text");
+         } else {
+            elem.attr("type", "password");
+         }
+      });
+   });
+</script>
+@endsection
 
 
 

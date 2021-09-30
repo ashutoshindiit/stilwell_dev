@@ -54,6 +54,9 @@
           }
           },100);
         </script>
+
+        @yield('scripts_extra')
+        
     </body>
 </html>
         

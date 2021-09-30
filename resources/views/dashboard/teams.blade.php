@@ -12,7 +12,7 @@
             <div class="search-box">
                <form action="#" >
                   <i style="" class="ti-search"></i>
-                  <input type="text" name="search" placeholder="Search Team..." required="">
+                  <input type="text" id="team_search" name="search" placeholder="Search Team..." required="">
                </form>
             </div>
 <!--             <button type="button" class="ml-3 btn btn-rounded btn-primary">Open Estimate</button> -->
@@ -36,7 +36,7 @@
                      </div>
                   @endif                  
                   <div class="table-responsive">
-                     <table id="dataTable"  class="table">
+                     <table id="dataTableTeam"  class="table">
                         <thead class="bg-light text-capitalize">
                            <tr>
                               <th>Sr. No.</th>
@@ -93,7 +93,17 @@
 <!--=================================*
    End Main Content Section
    *===================================-->
+@endsection 
+@section('scripts_extra')
    <script>
+      $(document).ready(function () {
+         var table = $('#dataTableTeam').DataTable();
+   
+         $(document).on('keyup','#team_search', function(e){
+            table.search(this.value).draw();
+         });
+   
+      });
       function archiveFunction(formID) {
          event.preventDefault(); // prevent form submit
          var form = document.getElementById(formID);

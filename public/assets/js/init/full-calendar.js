@@ -178,7 +178,32 @@ jQuery(document).ready(function () {
             $('#add-event-modal').modal('hide');
         });        
 
-        $(".event-datepicker").datetimepicker({ dateFormat: 'dd-mm-yy' });
+        $(".event-datepicker-d1").datetimepicker({ 
+            dateFormat: 'dd-mm-yy', 
+            onSelect: function () {
+                var dt2 = $(this).parents('form').find('.event-datepicker-d2');
+                var startDate = $(this).datetimepicker('getDate');
+                var minDate = $(this).datetimepicker('getDate');
+                var dt2Date = dt2.datetimepicker('getDate');
+
+                var dateDiff = (dt2Date - minDate)/(86400 * 1000);
+                
+                startDate.setDate(startDate.getDate() + 30);
+                if (dt2Date == null || dateDiff < 0) {
+                		dt2.datetimepicker('setDate', minDate);
+                }
+                else if (dateDiff > 30){
+                		dt2.datetimepicker('setDate', startDate);
+                }
+                //sets dt2 maxDate to the last day of 30 days window
+                dt2.datetimepicker('option', 'maxDate', startDate);
+                dt2.datetimepicker('option', 'minDate', minDate);
+            }
+        });
+
+        $('.event-datepicker-d2').datetimepicker({
+            dateFormat: 'dd-mm-yy', 
+        });
 });
 
 function displayMessage(message) {

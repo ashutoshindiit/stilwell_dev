@@ -12,7 +12,7 @@
             <div class="search-box">
                <form action="#" >
                   <i style="" class="ti-search"></i>
-                  <input type="text" name="search" placeholder="Search Roles..." required="">
+                  <input type="text" id="role_search" name="search" placeholder="Search Roles..." required="">
                </form>
             </div>
 <!--             <button type="button" class="ml-3 btn btn-rounded btn-primary">Open Estimate</button> -->
@@ -36,7 +36,7 @@
                      </div>
                   @endif
                   <div class="table-responsive">
-                     <table id="dataTable"  class="table">
+                     <table id="dataTableRole"  class="table">
                         <thead class="bg-light text-capitalize">
                            <tr>
                               <th>Sr. No.</th>
@@ -82,23 +82,34 @@
 <!--=================================*
    End Main Content Section
    *===================================-->
-<script>
-   function archiveFunction(formID) {
-      event.preventDefault(); // prevent form submit
-      var form = document.getElementById(formID);
-      swal({
-         title: 'Are you sure?',
-         text: "You won't be able to revert this!",
-         type: 'warning',
-         showCancelButton: true,
-         confirmButtonColor: '#3085d6',
-         cancelButtonColor: '#d33',
-         confirmButtonText: 'Yes, delete it!'
-      }).then(function(isConfirm){
-         if (isConfirm.value == true) {
-            form.submit()
-         }
-      })
-   }
-</script>
+@endsection 
+@section('scripts_extra')
+   <script>
+      $(document).ready(function () {
+   
+         var table = $('#dataTableRole').DataTable();
+   
+         $(document).on('keyup','#role_search', function(e){
+            table.search(this.value).draw();
+         });
+   
+      });
+      function archiveFunction(formID) {
+         event.preventDefault(); // prevent form submit
+         var form = document.getElementById(formID);
+         swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+         }).then(function(isConfirm){
+            if (isConfirm.value == true) {
+               form.submit()
+            }
+         })
+      }
+   </script>
 @endsection 
