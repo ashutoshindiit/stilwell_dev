@@ -324,15 +324,37 @@ jQuery(document).ready(function () {
     ==================================*/
     
     $('#adminmail-send').submit(function(event) {
-        console.log('submit');
         event.preventDefault();
+        $('.email-error').empty();  
+        var email = $('#adminmail-send #email-sendTo').val();
+        var subject = $('#adminmail-send #email-subject').val();
+        var text = $('#adminmail-send #email-text').val();
+        var error = 0;
+        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(email == ''){
+            $('.error-emailTo').text('The email to field is required.');
+            error = 1;
+        }else if(!regex.test(email)){
+            $('.error-emailTo').text('The email to format is invalid.');
+            error = 1; 
+        }
+        if(subject == ''){
+            $('.error-emailSubject').text('The email subject field is required.');
+            error = 1;
+        }
+        if(text == ''){
+            $('.error-emailText').text('The email text field is required.');
+            error = 1;
+        }
+        if(error == 1){
+            return false;
+        }
         let formData = new FormData(this);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         });  
-        $('.email-error').empty();   
         $.ajax({
             url: APP_URL+'/admin/sendEmail',
             type: 'POST',              

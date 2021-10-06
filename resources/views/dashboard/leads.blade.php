@@ -30,20 +30,6 @@
       <div class="row">
          <!-- data table -->
          <div class="col-md-12 grid-margin tabdash ">
-            <!--ul class="nav nav-tabs" id="myTab" role="tablist">
-               <li class="nav-item mr-2">
-                  <a class="active show btn bg-white" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Leads</a>
-               </li>
-               <li class="nav-item">
-                  <a class="btn bg-white" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Lead Info</a>
-               </li>
-            </ul-->
-            <!--  <div class="d-flex justify-content-between flex-wrap tabdash">
-               <div class="d-flex">
-                  <button class="btn bg-primary mr-3"> <i class="feather ft-phone"></i> Contacts</button>
-                  <button class="btn bg-white "><i class="feather ft-user"></i> Contact Info</button>
-               </div>
-               </div> -->
          </div>
          <div class="col-12">
             <div class="card-body ptb0 pt-0">
@@ -85,6 +71,7 @@
                                        <th>Date Revised</th>
                                        <th>Status</th>
                                        <th>Action</th>
+                                       <th>ID</th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -99,7 +86,7 @@
                                              <td>{{ $lead->project_type }}</td>
                                              <td>{{ $lead->source }}</td>
                                              <td><span class="label label-primary">{{ date('Y/m/d',strtotime($lead->created_at)) }}</span></td>
-                                             <td><span class="label label-primary">{{ date('Y/m/d',strtotime($lead->created_at)) }}</span></td>
+                                             <td><span class="label label-primary">{{ date('Y/m/d',strtotime($lead->updated_at)) }}</span></td>
                                              <td>
                                                 <select class="form-control leadStatus">
                                                    @foreach ($leadStatus as $status)
@@ -122,6 +109,7 @@
                                                    @endif
                                                 </ul>
                                              </td>
+                                             <td>{{ $lead->id }}</td>
                                           </tr>                                          
                                        @endforeach
                                     @endif
@@ -463,22 +451,54 @@
 <script>
    $(document).ready(function () {
 
-      var table = $('#dataTableLead').DataTable();
-
-      $(document).on('keyup','#lead_search', function(e){
-         table.search(this.value).draw();
+      var table = $('#dataTableLead').DataTable({
+         "order": [[ 11, "desc" ]],
+        "columnDefs": [
+            {
+               'targets': [9,10], 
+               'orderable': false, 
+            },
+            {
+               "targets": [ 11 ],
+               "visible": false,
+            },
+        ]
       });
 
-      $('input:radio[name="leadStatusChk"]').change(function(){
-
-         var searchTerm = this.value.toLowerCase()
-         if (!searchTerm) {
-            table.draw();   
+      $(document).on('keyup','#lead_search', function(e){
+         var serVal = $(this).val().toLowerCase()
+         var searchTerm = $('input[name=leadStatusChk]:checked').val().toLowerCase()
+         if(!searchTerm){
+            table.search(serVal).draw();   
             return;
          }
          table.search(this.value, true, false, true ).draw();
          $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-            if (data[4].toLowerCase() == searchTerm) return true
+            if(serVal){
+               if (data[4].toLowerCase() == searchTerm && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
+            }else{
+               if (data[4].toLowerCase() == searchTerm) return true
+            }
+            return false
+         })
+         table.draw();   
+         $.fn.dataTable.ext.search.pop()   
+      });
+
+      $('input:radio[name="leadStatusChk"]').change(function(){
+         var serVal = $('#lead_search').val().toLowerCase()
+         var searchTerm = this.value.toLowerCase()
+         if (!searchTerm) {
+            table.search(serVal).draw();   
+            return;
+         }
+         table.search(this.value, true, false, true ).draw();
+         $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            if(serVal){
+               if (data[4].toLowerCase() == searchTerm && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
+            }else{
+               if (data[4].toLowerCase() == searchTerm) return true
+            }            
             return false
          })
          table.draw();   
@@ -556,6 +576,10 @@
             },
          });
       });
+
+      $('#leadModal, #leadModalEdit').on('hidden.bs.modal', function (e) {
+         $('.error-form').empty();
+      })
 
       $(document).on('click','.update-lead-btn', function(){
          $('.error-form').empty();

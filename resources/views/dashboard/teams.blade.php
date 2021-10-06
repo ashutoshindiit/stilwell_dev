@@ -55,7 +55,7 @@
                                     <td>{{ $key+1 }}</td>
                                     <td>{{ $team->name }}</td>
                                     <td>{{ $team->email }}</td>
-                                    <td>{{ $team->role->name }}</td>
+                                    <td>{{ @$team->role->name }}</td>
                                     <td><span class="label label-primary">{{ $team->created_at->format('d M Y') }}</span></td>
                                     <td>
                                        @if($team->status == 0)

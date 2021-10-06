@@ -47,7 +47,7 @@ class ProfileController extends Controller
             $request->validate([
                 'old_password' => 'required',
                 'new_password' => 'required|min:6',
-                'password_confirmation' => 'required_with:new_password|same:new_password|min:6'
+                'password_confirmation' => 'required|required_with:new_password|same:new_password|min:6'
             ]);   
 
             $data = $request->all();

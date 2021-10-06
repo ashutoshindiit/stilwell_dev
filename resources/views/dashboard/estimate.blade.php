@@ -54,8 +54,8 @@
                      <table id="dataTableEstimate"  class="table text-center">
                         <thead class="bg-light text-capitalize">
                            <tr>
-                              <th>Last Name</th>
                               <th>First Name</th>
+                              <th>Last Name</th>
                               <th>Porject Name</th>
                               <th>Porject Address</th>
                               <th>Lead Status</th>
@@ -63,22 +63,22 @@
                               <th>Date Created</th>
                               <th>Date Revised</th>
                               <th>Status</th>
-                            
                               <th>Action</th>
+                              <th>ID</th>
                            </tr>
                         </thead>
                         <tbody>
                            @if(count($estimates) > 0)
                               @foreach ($estimates as $estimate)                           
                                  <tr  data-estimateId="{{ $estimate->id }}"">
-                                    <td>{{ $estimate->last_name }}</td>
                                     <td>{{ $estimate->first_name }}</td>
+                                    <td>{{ $estimate->last_name }}</td>
                                     <td>{{ $estimate->project_name }}</td>
                                     <td>{{ $estimate->address }}</td>
                                     <td>{{ ($estimate->active == 0) ? 'Inactive' : 'Active' }}</td>
                                     <td>{{ $estimate->project_type }}</td>
                                     <td><span class="label label-primary">{{ date('Y/m/d',strtotime($estimate->created_at)) }}</span></td>
-                                    <td><span class="label label-primary">{{ date('Y/m/d',strtotime($estimate->created_at)) }}</span></td>
+                                    <td><span class="label label-primary">{{ date('Y/m/d',strtotime($estimate->updated_at)) }}</span></td>
                                     <td>
                                        <select class="form-control estimateStatus">
                                           @foreach ($leadStatus as $status)
@@ -101,6 +101,7 @@
                                           @endif
                                        </ul>
                                     </td>
+                                    <td>{{ $estimate->id }}</td>
                                  </tr>
                               @endforeach
                            @endif
@@ -287,7 +288,7 @@
      <div class="modal-body">
          <form id="update_estimate" action="" method="post"> 
             <div class="contactInfo">
-               <h2>Add Estimate</h2>
+               <h2>Edit Estimate</h2>
                <div class="switchBox">
                   <span class="ac">Active</span>
                   <label class="switch">
@@ -583,26 +584,63 @@
 <script>
    $(document).ready(function () {
       
-      var table = $('#dataTableEstimate').DataTable();
+      var table = $('#dataTableEstimate').DataTable({
+         "order": [[ 10, "desc" ]],
+        "columnDefs": [
+            {
+               'targets': [8,9], 
+               'orderable': false, 
+            },
+            {
+               "targets": [ 10 ],
+               "visible": false,
+            },
+        ]
+      });
       
       $(document).on('keyup','#estimate_search', function(e){
-         table.search(this.value).draw();
-      });
-
-      $('input:radio[name="estimateStatusChk"]').change(function(){
-         var searchTerm = this.value.toLowerCase()
-         if (!searchTerm) {
-            table.draw();   
+         var serVal = $(this).val().toLowerCase()
+         var searchTerm = $('input[name=estimateStatusChk]:checked').val().toLowerCase()
+         if(!searchTerm){
+            table.search(serVal).draw();   
             return;
          }
          table.search(this.value, true, false, true ).draw();
          $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-            if (data[4].toLowerCase() == searchTerm) return true
+            if(serVal){
+               if (data[4].toLowerCase() == searchTerm && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
+            }else{
+               if (data[4].toLowerCase() == searchTerm) return true
+            }
+            return false
+         })
+         table.draw();   
+         $.fn.dataTable.ext.search.pop()         
+      });
+
+      $('input:radio[name="estimateStatusChk"]').change(function(){
+         var serVal = $('#estimate_search').val().toLowerCase()
+         var searchTerm = this.value.toLowerCase()
+         if (!searchTerm) {
+            table.search(serVal).draw();   
+            return;
+         }
+         table.search(this.value, true, false, true ).draw();
+         $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            if(serVal){
+               if (data[4].toLowerCase() == searchTerm && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
+            }else{
+               if (data[4].toLowerCase() == searchTerm) return true
+            }
             return false
          })
          table.draw();   
          $.fn.dataTable.ext.search.pop()
       });   
+
+      $('#estimateModal, #estimateModalEdit').on('hidden.bs.modal', function (e) {
+         $('.error-form').empty();
+      })      
 
       $(document).on('click','.view_estimate', function(e){
          e.preventDefault();

@@ -87,7 +87,14 @@
    <script>
       $(document).ready(function () {
    
-         var table = $('#dataTableRole').DataTable();
+         var table = $('#dataTableRole').DataTable({
+            "columnDefs": [
+               {
+                  'targets': [3],  
+                  'orderable': false, 
+               },
+            ]
+         });
    
          $(document).on('keyup','#role_search', function(e){
             table.search(this.value).draw();

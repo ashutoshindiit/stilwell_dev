@@ -12,7 +12,7 @@ class TeamController extends Controller
 {
     public function index()
     {
-        $teams = User::all();
+        $teams = User::orderBy('id','desc')->get();
         return view('dashboard.teams', compact('teams'));
     }
 

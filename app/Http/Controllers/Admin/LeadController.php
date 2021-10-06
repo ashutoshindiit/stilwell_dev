@@ -14,7 +14,7 @@ class LeadController extends Controller
     public function index()
     {
         $contacts = Contact::all();
-        $leads = Lead::all();
+        $leads = Lead::orderBy('created_at', 'desc')->get();
         $leadStatus = ContactStatus::all();
         return view('dashboard.leads',compact('contacts','leads','leadStatus'));
     }

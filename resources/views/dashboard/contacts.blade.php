@@ -90,6 +90,7 @@
                                     <th>Date Revised</th>
                                     <th> Status</th>
                                     <th>Action</th>
+                                    <th>ID</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -102,7 +103,7 @@
                                           <td>{{ ($contact->active == 0) ? 'Inactive' : 'Active' }}</td>
                                           <td>{{ $contact->source }}</td>
                                           <td>{{ $contact->label }}</td>
-                                          <td>{{ $contact->address }}</td>
+                                          <td>{{ Str::limit($contact->address, 30, $end='.......') }}</td>
                                           <td>{{ $contact->primary_phone_1 }}</td>
                                           <td><span class="label label-primary">{{ date('Y/m/d',strtotime($contact->created_at)) }}</span></td>
                                           <td><span class="label label-primary">{{ date('Y/m/d',strtotime($contact->updated_at)) }}</span></td>
@@ -127,7 +128,8 @@
                                                 <li><a href="#"  onclick="archiveFunction('delete_contact_{{$contact->id}}')" class="text-danger"><i class="ti-trash"></i></a></li>
                                                 @endif
                                              </ul>
-                                       </td>
+                                          </td>
+                                          <td>{{ $contact->id }}</td>
                                        </tr>                                       
                                     @endforeach
                                  @endif
@@ -708,33 +710,76 @@
    $(document).ready(function () {
 
       var table = $('#dataTableContact').DataTable({
-        "columnDefs": [
-            {
-                "targets": [ 3 ],
-                "visible": false,
-            },
-            {
-                "targets": [ 4 ],
-                "visible": false,
-            },
-            {
-                "targets": [ 5 ],
-                "visible": false,
-            }
-        ]
+         "order": [[ 12, "desc" ]],
+         "columnDefs": [
+               {
+                  "targets": [ 3,12 ],
+                  "visible": false,
+               },
+               {
+                  "targets": [ 4 ],
+                  "visible": false,
+               },
+               {
+                  "targets": [ 5 ],
+                  "visible": false,
+               },
+               {
+                  'targets': [10,11], 
+                  'orderable': false, 
+               }
+         ]
       });
 
       $('input:radio[name="contactStatchChk"]').change(function(){
+         var serVal = $('#contact_search').val().toLowerCase()
          var statusSource = $('.statusSource').val().toLowerCase()
          var statusLabel = $('.statusLabel').val().toLowerCase()
          var statusChk = $('input[name=contactStatchChk]:checked').val().toLowerCase()
          if (!statusSource && !statusLabel && !statusChk) {
-            table.search("").draw();   
+            table.search(serVal).draw();   
             return;
          }
+         
          table.search(this.value, true, false, true ).draw();
-         $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-
+         if(serVal){
+            $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            if(statusSource && statusLabel && statusChk){
+               console.log(1)
+               console.log(serVal)
+               if( data[1].toLowerCase() == serVal){
+                  console.log('hello');
+               }
+               if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1) ) return true
+            }
+            else if(statusSource && statusLabel){
+               console.log(2)
+               if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
+            }
+            else if(statusSource && statusChk){
+               console.log(3)
+               if (data[4].toLowerCase() == statusSource && data[3].toLowerCase() == statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
+            }
+            else if(statusLabel && statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(4)
+               if (data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk) return true
+            }
+            else if(statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(5)
+               if (data[3].toLowerCase() == statusChk) return true
+            }
+            else if(statusLabel && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(6)
+               if (data[5].toLowerCase() == statusLabel) return true
+            }
+            else if(statusSource && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(7)
+               if (data[4].toLowerCase() == statusSource) return true
+            }
+            return false
+            })
+         }else{
+            $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
             if(statusSource && statusLabel && statusChk){
                console.log(1)
                if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk) return true
@@ -764,28 +809,68 @@
                if (data[4].toLowerCase() == statusSource) return true
             }
             return false
-         })
+            })
+         }
+
          table.draw();   
          $.fn.dataTable.ext.search.pop()
       });    
 
       $('.statusSource').change(function(){
+         var serVal = $('#contact_search').val().toLowerCase()
          var statusSource = $('.statusSource').val().toLowerCase()
          var statusLabel = $('.statusLabel').val().toLowerCase()
          var statusChk = $('input[name=contactStatchChk]:checked').val().toLowerCase()
          if (!statusSource && !statusLabel && !statusChk) {
-            table.search("").draw();   
+            table.search(serVal).draw();   
             return;
          }
          table.search(this.value, true, false, true ).draw();
-         $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+         if(serVal){
+            $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            if(statusSource && statusLabel && statusChk){
+               console.log(1)
+               console.log(serVal)
+               if( data[1].toLowerCase() == serVal){
+                  console.log('hello');
+               }
+               if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1) ) return true
+            }
+            else if(statusSource && statusLabel){
+               console.log(2)
+               if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
+            }
+            else if(statusSource && statusChk){
+               console.log(3)
+               if (data[4].toLowerCase() == statusSource && data[3].toLowerCase() == statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
+            }
+            else if(statusLabel && statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(4)
+               if (data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk) return true
+            }
+            else if(statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(5)
+               if (data[3].toLowerCase() == statusChk) return true
+            }
+            else if(statusLabel && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(6)
+               if (data[5].toLowerCase() == statusLabel) return true
+            }
+            else if(statusSource && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(7)
+               if (data[4].toLowerCase() == statusSource) return true
+            }
+            return false
+            })
+         }else{
+            $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
 
             if(statusSource && statusLabel && statusChk){
                console.log(1)
                if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk) return true
             }
             else if(statusSource && statusLabel){
-               console.log(2)
+               console.log(21)
                if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel) return true
             }
             else if(statusSource && statusChk){
@@ -809,58 +894,138 @@
                if (data[4].toLowerCase() == statusSource) return true
             }
             return false
-         })
+            })
+         }
          table.draw();   
          $.fn.dataTable.ext.search.pop()
       });
 
       $('.statusLabel').change(function(){
+         var serVal = $('#contact_search').val().toLowerCase()
          var statusSource = $('.statusSource').val().toLowerCase()
          var statusLabel = $('.statusLabel').val().toLowerCase()
          var statusChk = $('input[name=contactStatchChk]:checked').val().toLowerCase()
          if (!statusSource && !statusLabel && !statusChk) {
-            table.search("").draw();   
+            table.search(serVal).draw();   
+            return;
+         }
+         table.search(this.value, true, false, true ).draw();
+         if(serVal){
+            $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            if(statusSource && statusLabel && statusChk){
+               console.log(1)
+               console.log(serVal)
+               if( data[1].toLowerCase() == serVal){
+                  console.log('hello');
+               }
+               if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1) ) return true
+            }
+            else if(statusSource && statusLabel){
+               console.log(2)
+               if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
+            }
+            else if(statusSource && statusChk){
+               console.log(3)
+               if (data[4].toLowerCase() == statusSource && data[3].toLowerCase() == statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
+            }
+            else if(statusLabel && statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(4)
+               if (data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk) return true
+            }
+            else if(statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(5)
+               if (data[3].toLowerCase() == statusChk) return true
+            }
+            else if(statusLabel && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(6)
+               if (data[5].toLowerCase() == statusLabel) return true
+            }
+            else if(statusSource && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
+               console.log(7)
+               if (data[4].toLowerCase() == statusSource) return true
+            }
+            return false
+            })
+         }else{
+            $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+               if(statusSource && statusLabel && statusChk){
+                  console.log(1)
+                  if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk) return true
+               }
+               else if(statusSource && statusLabel){
+                  console.log(2)
+                  if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel) return true
+               }
+               else if(statusSource && statusChk){
+                  console.log(3)
+                  if (data[4].toLowerCase() == statusSource && data[3].toLowerCase() == statusChk) return true
+               }
+               else if(statusLabel && statusChk){
+                  console.log(4)
+                  if (data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk) return true
+               }
+               else if(statusChk){
+                  console.log(5)
+                  if (data[3].toLowerCase() == statusChk) return true
+               }
+               else if(statusLabel){
+                  console.log(6)
+                  if (data[5].toLowerCase() == statusLabel) return true
+               }
+               else if(statusSource){
+                  console.log(7)
+                  if (data[4].toLowerCase() == statusSource) return true
+               }
+               return false
+            })
+         }         
+         table.draw();   
+         $.fn.dataTable.ext.search.pop()
+      }); 
+
+      $(document).on('keyup','#contact_search', function(e){
+         var serVal = $(this).val().toLowerCase()
+         var statusSource = $('.statusSource').val().toLowerCase()
+         var statusLabel = $('.statusLabel').val().toLowerCase()
+         var statusChk = $('input[name=contactStatchChk]:checked').val().toLowerCase()
+         if (!statusSource && !statusLabel && !statusChk) {
+            table.search(serVal).draw();   
             return;
          }
          table.search(this.value, true, false, true ).draw();
          $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
 
             if(statusSource && statusLabel && statusChk){
-               console.log(1)
-               if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk) return true
+               if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1) ) return true
             }
             else if(statusSource && statusLabel){
                console.log(2)
-               if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel) return true
+               if (data[4].toLowerCase() == statusSource && data[5].toLowerCase() == statusLabel && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
             }
             else if(statusSource && statusChk){
                console.log(3)
-               if (data[4].toLowerCase() == statusSource && data[3].toLowerCase() == statusChk) return true
+               if (data[4].toLowerCase() == statusSource && data[3].toLowerCase() == statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)) return true
             }
-            else if(statusLabel && statusChk){
+            else if(statusLabel && statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
                console.log(4)
                if (data[5].toLowerCase() == statusLabel && data[3].toLowerCase() == statusChk) return true
             }
-            else if(statusChk){
+            else if(statusChk && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
                console.log(5)
                if (data[3].toLowerCase() == statusChk) return true
             }
-            else if(statusLabel){
+            else if(statusLabel && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
                console.log(6)
                if (data[5].toLowerCase() == statusLabel) return true
             }
-            else if(statusSource){
+            else if(statusSource && (data[0].toLowerCase().search(serVal) != -1 || data[1].toLowerCase().search(serVal) != -1 || data[2].toLowerCase().search(serVal) != -1)){
                console.log(7)
                if (data[4].toLowerCase() == statusSource) return true
             }
             return false
          })
          table.draw();   
-         $.fn.dataTable.ext.search.pop()
-      }); 
-
-      $(document).on('keyup','#contact_search', function(e){
-         table.search(this.value).draw();
+         $.fn.dataTable.ext.search.pop()       
       });
 
       $(document).on('click','.view_contact', function(e){
@@ -917,6 +1082,10 @@
             });            
          }
       });
+
+      $('#contactModal, #contactModalEdit').on('hidden.bs.modal', function (e) {
+         $('.error-form').empty();
+      })
 
       $(document).on('click','.add-contact-btn', function(){
          $('.error-form').empty();

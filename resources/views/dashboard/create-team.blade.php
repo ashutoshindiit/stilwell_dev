@@ -9,7 +9,7 @@
    <div class="topheader">
       <div class="card">
          <div class="card-body d-flex align-items-center">
-            <a href="team.php" class="ml-auto btn btn-rounded  btn-info">Back to Team</a>
+            <a href="{{ Route('admin.teams.index') }}" class="ml-auto btn btn-rounded  btn-info">Back to Team</a>
          </div>
       </div>
    </div>

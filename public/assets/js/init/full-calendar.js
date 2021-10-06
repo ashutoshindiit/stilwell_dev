@@ -34,10 +34,16 @@ jQuery(document).ready(function () {
                 week : 'week',
                 day  : 'day'
             },     
-            timeZone: "Asia/Kolkata",
+            timeZone: "local",
             defaultView: "month",       
             events: APP_URL + "/admin/fullcalender",
-
+            loading: function( isLoading, view ) {
+                if(isLoading) {// isLoading gives boolean value
+                    $('#wait').show();
+                } else {
+                    $('#wait').hide();
+                }
+            },
             eventRender: function (event, element, view) {
                 element
                 .find(".fc-content")
@@ -46,6 +52,7 @@ jQuery(document).ready(function () {
                     e.preventDefault();
                     var deleteMsg = confirm("Do you really want to delete?");
                     if (deleteMsg) {
+                        $('#wait').show();
                         $.ajax({
                             type: "POST",
                             url: APP_URL + '/admin/fullcalenderAjax',
@@ -56,7 +63,7 @@ jQuery(document).ready(function () {
                             success: function (response) {
                                 calendar.fullCalendar('removeEvents', event.id);
                                 displayMessage("Event Deleted Successfully");
-                            
+                                $('#wait').hide();
                             }
                         });
                     }
@@ -71,6 +78,11 @@ jQuery(document).ready(function () {
                 end = moment(end).format('DD-MM-YYYY 00:00'); 
                 $('#add_event_title').val('');
                 $('#add_event_start').val(start);
+                var des = $('.event-datepicker-d2').datetimepicker('destroy');
+                $('.event-datepicker-d2').datetimepicker({
+                    dateFormat: 'dd-mm-yy', 
+                    minDate: start,
+                });        
                 $('#add_event_end').val(end);
                 $('#add-event-modal').modal('show');
             },
@@ -78,7 +90,7 @@ jQuery(document).ready(function () {
             eventDrop: function (event, delta) {
                 var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
                 var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
-
+                $('#wait').show();
                 $.ajax({
                     url: APP_URL + '/admin/fullcalenderAjax',
                     data: {
@@ -91,7 +103,7 @@ jQuery(document).ready(function () {
                     type: "POST",
                     success: function (response) {
                         displayMessage("Event Updated Successfully");
-                    
+                        $('#wait').hide();
                     }
                 });
             },
@@ -103,6 +115,11 @@ jQuery(document).ready(function () {
                 $('#update_event_id').val(event.id);
                 $('#update_event_title').val(event.title);
                 $('#update_event_start').val(start);
+                var des = $('.event-datepicker-d2').datetimepicker('destroy');
+                $('.event-datepicker-d2').datetimepicker({
+                    dateFormat: 'dd-mm-yy', 
+                    minDate: start,
+                });                  
                 $('#update_event_end').val(end);
                 $('#update-event-modal').modal('show');           
             }
@@ -117,6 +134,7 @@ jQuery(document).ready(function () {
             var end = $('#update_event_end').val();
             var id = $('#update_event_id').val();
             if (title && start && id) {
+                $('#wait').show();
                 $.ajax({
                     url: APP_URL + "/admin/fullcalenderAjax",
                     data: {
@@ -135,7 +153,7 @@ jQuery(document).ready(function () {
                         event.end = data.end;
                         $('#calendar').fullCalendar('updateEvent',event);
                         $('#calendar').fullCalendar('unselect');
-                    
+                        $('#wait').hide();
                     }
                 });
             }
@@ -151,6 +169,7 @@ jQuery(document).ready(function () {
             var start = $('#add_event_start').val();
             var end = $('#add_event_end').val();
             if (title && start) {
+                $('#wait').show();
                 $.ajax({
                     url: APP_URL + "/admin/fullcalenderAjax",
                     data: {
@@ -172,6 +191,7 @@ jQuery(document).ready(function () {
 
                         $('#calendar').fullCalendar('unselect');
                         render_ajax_event();
+                        $('#wait').hide();
                     }
                 });
             }
@@ -203,6 +223,7 @@ jQuery(document).ready(function () {
 
         $('.event-datepicker-d2').datetimepicker({
             dateFormat: 'dd-mm-yy', 
+            minDate: 0,
         });
 });
 

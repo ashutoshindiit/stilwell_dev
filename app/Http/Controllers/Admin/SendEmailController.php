@@ -12,7 +12,7 @@ class SendEmailController extends Controller
     public function sendEmail(Request $request)
     {
         $validator = Validator::make($request->all(),  [
-            'emailTo' => 'required',
+            'emailTo' => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             "emailSubject" => 'required',
             "emailText" => 'required',
         ]);
@@ -25,9 +25,8 @@ class SendEmailController extends Controller
             );            
 
             \Mail::send('dashboard.emails.email', compact('data'), function ($message) use($data, $files){    
-                $message->from('indiit@gmail.com');
+                $message->from('25userdemo@gmail.com');
                 $message->to($data['to'])->subject($data['emailSubject']);
-        
                 if($files) {
                     $message->attach($files->getRealPath(), array(
                         'as' => $files->getClientOriginalName(), // If you want you can chnage original name to custom name      

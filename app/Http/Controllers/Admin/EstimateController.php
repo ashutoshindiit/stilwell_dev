@@ -89,7 +89,7 @@ class EstimateController extends Controller
         $contact = Estimate::findOrFail($id);
         $contact->fill($request->all());
         $contact->update();        
-        flashMessageSet('Lead updated successfully.','success');
+        flashMessageSet('Estimate updated successfully.','success');
         return ['success'=>true];           
     }
 

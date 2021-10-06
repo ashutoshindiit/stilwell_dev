@@ -161,13 +161,20 @@
             <div class="toggle closebtn"><i class="feather ft-x"></i></div>  
             <div class="eventsec">
                 <ul class="bullet-line-list render-ajax-googleEvent">
-
+                    <div class="loader">Loading...</div>
                 </ul>
             </div>
           </div>
           <div class="dash-sidebar dashtogle1">
             <div class="toggle1 closebtn"><i class="feather ft-x"></i></div>  
             <div class="eventsec">
+                <div class="loader-inner line-scale-pulse-out" id="wait">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
                 <div id="calendar"></div>
             </div>
           </div>
@@ -203,7 +210,7 @@
                         </div>
                         <div class="form-group">
                             <input class="form-control" type="text" placeholder="Subject" name="emailSubject" id="email-subject">
-                            <span class="email-error error-emailSubject alert text-danger" name="emailTo" id="email-sendTo">
+                            <span class="email-error error-emailSubject alert text-danger">
                         </div>
                         <div class="form-group">
                             <textarea class="form-control" rows="4" placeholder="Message" name="emailText" id="email-text"></textarea>
@@ -279,11 +286,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Event start</label>
-                                <input type="text" id="update_event_start" class="form-control col-xs-3 event-datepicker" />
+                                <input type="text" id="update_event_start" class="form-control col-xs-3 event-datepicker-d1" />
                             </div>
                             <div class="form-group">
                                 <label>Event end</label>
-                                <input type="text" id="update_event_end" class="form-control col-xs-3 event-datepicker" />
+                                <input type="text" id="update_event_end" class="form-control col-xs-3 event-datepicker-d2" />
                             </div>
                         </form>
                     </div>
@@ -299,6 +306,8 @@
            End Footer Section
            *===================================-->
         </div>
+        
+
         <!--=========================*
            End Page Container
            *===========================-->
