@@ -181,13 +181,14 @@ jQuery(document).ready(function () {
                     type: "POST",
                     success: function (data) {
                         displayMessage("Event Created Successfully");
-                        $('#calendar').fullCalendar('renderEvent',
+                        $('#calendar').fullCalendar('addEventSource',
                             {
                                 id: data.id,
                                 title: data.title,
                                 start: data.start,
                                 end:  data.end
-                            },true);
+                            });
+                        $('#calendar').fullCalendar('refetchEvents');
 
                         $('#calendar').fullCalendar('unselect');
                         render_ajax_event();

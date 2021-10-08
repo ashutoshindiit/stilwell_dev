@@ -27,10 +27,13 @@ class TeamController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:6',
-            'password_confirmation' => 'required|min:6',
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|required_with:password|same:password|min:6',
             'status' => 'required',
             'role' => 'required',
+        ],
+        [
+            'password_confirmation.same'=>'Confirm password mismatched',
         ]);
 
         User::create([
@@ -80,9 +83,13 @@ class TeamController extends Controller
 
         if($request->has('update_password')){
             $request->validate([
-                'password' => 'required|confirmed|min:6',
-                'password_confirmation' => 'required|min:6',
-            ]);    
+                'password' => 'required|min:6',
+                'password_confirmation' => 'required|required_with:password|same:password|min:6',
+            ],
+            [
+                'password_confirmation.same'=>'Confirm password mismatched',
+            ]
+            );    
             User::where('id',$id)->update([
                 'password' => Hash::make($request->password),
             ]);        

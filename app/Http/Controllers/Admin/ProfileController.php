@@ -48,6 +48,9 @@ class ProfileController extends Controller
                 'old_password' => 'required',
                 'new_password' => 'required|min:6',
                 'password_confirmation' => 'required|required_with:new_password|same:new_password|min:6'
+            ],
+            [
+                'password_confirmation.same'=>'Confirm password mismatched',
             ]);   
 
             $data = $request->all();

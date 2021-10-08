@@ -33,7 +33,12 @@ class ContactController extends Controller
     	$validator = Validator::make($request->all(), [
             'primary_f_name' => 'required',
             'primary_l_name' => 'required',
-        ]);
+        ],
+        [
+            'primary_f_name.required' => 'First name is required',
+            'primary_l_name.required' => 'Last name is required',
+        ]
+        );
 
         $validator->setAttributeNames($attributeNames);
 
